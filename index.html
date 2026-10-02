@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>TechNext Marketing Hub</title>
-<meta name="description" content="Every TechNext marketing tool in one place: presentations, Drip Studio, the website, Nexi Studio, the brand guide and the staff branding kit (signature, profile photo, backgrounds, business and ID cards).">
+<meta name="description" content="Every TechNext marketing tool in one place: presentations, Drip Studio, the Paid Ads Studio, the website, Nexi Studio, the brand guide and the staff branding kit (signature, profile photo, backgrounds, business and ID cards).">
 <link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +21,7 @@
       <a href="index.html" aria-current="page">Tools</a>
       <a href="branding.html">Brand guide</a>
       <a href="nexi-studio.html">Nexi Studio</a>
+      <a href="paid-ads.html">Paid ads</a>
       <a class="cta" href="https://technext.asia" target="_blank" rel="noopener">technext.asia</a>
     </nav>
   </div>
@@ -30,10 +31,10 @@
   <div class="wrap">
     <span class="kicker"><i></i>Marketing team &middot; internal</span>
     <h1>Every marketing tool, <em>one page.</em></h1>
-    <p>The eight things the marketing team opens most, with the links that matter for each. Bookmark this page and stop hunting through Drive, GitHub and chat history.</p>
+    <p>The seven things the marketing team opens most, with the links that matter for each. Bookmark this page and stop hunting through Drive, GitHub and chat history.</p>
     <label class="search" for="q">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search tools: decks, drips, logo, Nexi, signature&hellip;" autocomplete="off">
+      <input id="q" type="search" placeholder="Search tools: decks, drips, ads, logo, Nexi, signature&hellip;" autocomplete="off">
       <kbd>/</kbd>
     </label>
     <div class="chips" role="group" aria-label="Filter by purpose">
@@ -120,16 +121,31 @@ window.APPS=[
     ]
   },
   {
+    name:'Paid Ads Studio',
+    cat:'social',
+    img:'assets/img/paid-ads.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'Paid social ads starring Nexi, the real 3D mascot, on the four TechNext backgrounds. Six ready campaigns (AI chatbots, Odoo one system, Odoo discovery, AI automation, Why TechNext, websites) in every size for Facebook, Instagram, LinkedIn, TikTok, X and YouTube, each in its own feed preview.',
+    use:'Before you launch an ad. Edit the words once and all 15 placements update; copy the ad text with live character counts and the tracking link; download PNGs, an 8-second MP4 or the whole campaign as a ZIP. Also: the Nexi pose pack and a spec sheet.',
+    tags:['paid ads','ads','advertising','facebook ads','instagram ads','meta','linkedin ads','tiktok','x','twitter','youtube','reels','stories','creatives','utm','nexi','mascot','video','campaign'],
+    links:[
+      {label:'Open Paid Ads Studio',href:'paid-ads.html'},
+      {label:'Facebook & Instagram',href:'paid-ads.html#facebook'},
+      {label:'TikTok',href:'paid-ads.html#tiktok'},
+      {label:'Nexi poses',href:'paid-ads.html#poses'}
+    ]
+  },
+  {
     name:'TechNext Website',
     cat:'web',
     img:'assets/img/website.jpg',
     badges:[{k:'live',t:'Live'}],
     desc:'technext.asia, the public site. Odoo 20 and AI services, 50 Odoo app pages, industries, the Nexi hero and live demos. Every booking runs through the Odoo calendar modal.',
-    use:'Send prospects here. The /lp/ page is the ads landing page; the blog and careers pages are linked in the footer. Changes deploy from GitHub to Vercel in about a minute.',
+    use:'Send prospects here. Paid ads land on the solution pages (Odoo ERP, AI chatbots, AI automation, websites); the old /lp/ ads page now redirects to the home page. Changes deploy from GitHub to Vercel in about a minute.',
     tags:['website','technext.asia','landing page','ads','seo','blog','careers','odoo apps','vercel'],
     links:[
       {label:'Open technext.asia',href:'https://technext.asia/'},
-      {label:'Ads landing /lp/',href:'https://technext.asia/lp/'},
+      {label:'Odoo ERP page',href:'https://technext.asia/solutions/odoo-erp'},
       {label:'Blog',href:'https://technext.asia/blog'},
       {label:'GitHub repo',href:'https://github.com/TechNextSG/TechNext-Website'}
     ]

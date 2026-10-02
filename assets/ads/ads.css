@@ -106,7 +106,7 @@ code{font-size:.9em;background:var(--blue-050);color:var(--blue-700);padding:1px
 .mk .icons{display:flex;gap:12px;padding:9px 12px 4px}
 .mk .icons svg{width:20px;height:20px}
 .mk .icons .r{margin-left:auto}
-.mk .cap{padding:0 12px 12px;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mk .cap{padding:0;margin:0 12px 12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .mk .igcta{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;font-weight:600;font-size:13px;color:#0064E0;border-bottom:1px solid #EFEFEF}
 .mk.li .tx{-webkit-line-clamp:2}
 .mk.li .linkbar{background:#EEF3F8}
