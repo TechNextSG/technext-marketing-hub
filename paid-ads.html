@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Paid Ads Studio</title>
+<meta name="description" content="TechNext paid social ads starring Nexi: on-brand creatives for Facebook, Instagram, LinkedIn, TikTok, X and YouTube, with ad copy, UTM links, PNG and video export.">
+<link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/hub.css?v=4">
+<link rel="stylesheet" href="assets/ads/ads.css?v=1">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo/technext-wide-blue.png" alt="TechNext" width="150" height="30"><b>Marketing Hub</b></a>
+    <nav class="nav" aria-label="Hub">
+      <a href="index.html">Tools</a>
+      <a href="branding.html">Brand guide</a>
+      <a href="nexi-studio.html">Nexi Studio</a>
+      <a href="paid-ads.html" aria-current="page">Paid ads</a>
+      <a class="cta" href="https://technext.asia" target="_blank" rel="noopener">technext.asia</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="Sections">
+  <div class="wrap">
+    <a href="#studio">Ad studio</a>
+    <a href="#facebook">Facebook</a>
+    <a href="#instagram">Instagram</a>
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#tiktok">TikTok</a>
+    <a href="#x">X</a>
+    <a href="#youtube">YouTube</a>
+    <a href="#poses">Nexi poses</a>
+    <a href="#specs">Specs &amp; checklist</a>
+  </div>
+</nav>
+
+<section class="hero ads-hero">
+  <div class="wrap">
+    <div class="hero-show" aria-hidden="true">
+      <img class="cr h2" data-k="1080x1080" alt="" width="1080" height="1080">
+      <img class="cr h3" data-k="1080x1350" alt="" width="1080" height="1350">
+      <img class="cr h1" data-k="1080x1920" alt="" width="1080" height="1920">
+    </div>
+    <div class="copyc">
+    <span class="kicker"><i></i>Paid social &middot; starring Nexi</span>
+    <h1>Paid ads for every platform, <em>starring Nexi.</em></h1>
+    <p>Six ready campaigns in TechNext branding, drawn on the four brand backgrounds with the real 3D Nexi as the model. Edit the words once and every size updates: Facebook, Instagram, LinkedIn, TikTok, X and YouTube, each in its own feed preview, with ad copy, tracking links, PNGs and short videos.</p>
+    <div class="acts">
+      <a class="btn p" href="#studio">Open the studio</a>
+      <button class="btn" type="button" id="zip-all">Download this campaign (ZIP)</button>
+      <a class="btn" href="#poses">Nexi pose pack</a>
+    </div>
+    <div class="stats" id="stats"></div>
+    </div>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">1</span><h2>Ad studio</h2><p>Pick a campaign, edit it on the left, check every platform on the right.</p></div>
+    <div class="concepts" id="concepts" role="tablist" aria-label="Campaigns"></div>
+
+    <div class="studio">
+      <aside class="editor card" id="editor" aria-label="Edit campaign">
+        <div class="ed-head"><b id="ed-name">Campaign</b><button class="btn sm" type="button" id="ed-reset" title="Back to the default words and design">Reset</button></div>
+
+        <label class="f"><span>Kicker</span><input id="f-kicker" data-k="kicker" maxlength="40"></label>
+        <label class="f"><span>Headline <small>*stars* = blue accent &middot; Enter = new line</small></span><textarea id="f-headline" data-k="headline" rows="2" maxlength="90"></textarea></label>
+        <label class="f"><span>Supporting line</span><textarea id="f-sub" data-k="sub" rows="3" maxlength="160"></textarea></label>
+        <div class="f2">
+          <label class="f"><span>Button</span><input id="f-cta" data-k="cta" maxlength="26"></label>
+          <label class="f"><span>Nexi says</span><input id="f-bubble" data-k="bubble" maxlength="26"></label>
+        </div>
+
+        <div class="f"><span class="lbl">Background</span><div class="bgs" id="f-bg" role="radiogroup" aria-label="Background"></div></div>
+        <div class="f"><span class="lbl">Nexi pose <small id="pose-name"></small></span><div class="poses-pick" id="f-pose" role="radiogroup" aria-label="Nexi pose"></div></div>
+
+        <details class="more">
+          <summary>Video, extras and badge</summary>
+          <div class="f2">
+            <label class="f"><span>Video: second pose</span><select id="f-pose2" data-k="pose2"></select></label>
+            <label class="f"><span>Video: second line</span><input id="f-bubble2" data-k="bubble2" maxlength="26"></label>
+          </div>
+          <label class="f"><span>Extras next to Nexi</span><select id="f-prop" data-k="prop"></select></label>
+          <label class="f"><span>Extra items <small>one per line &middot; figures as 10+|countries</small></span><textarea id="f-items" rows="3"></textarea></label>
+          <label class="chk"><input type="checkbox" id="f-badge"> <span>Odoo Ready Partner badge <small>Odoo ads only, never on website or marketing ads</small></span></label>
+          <label class="f"><span>Landing page</span><input id="f-url" type="url" spellcheck="false"></label>
+        </details>
+
+        <div class="warn" id="warn" hidden></div>
+        <p class="ed-note">Edits save in this browser only. Claims follow the <a href="branding.html#words">brand guide</a>: no prices, &ldquo;Odoo Ready Partner&rdquo; never &ldquo;Certified&rdquo;.</p>
+      </aside>
+
+      <div class="boards">
+        <div class="board-bar">
+          <div class="chips" id="pf-chips" role="group" aria-label="Show platform"></div>
+          <label class="switch"><input type="checkbox" id="ui-toggle" checked> <span>Platform UI on top</span></label>
+        </div>
+        <div id="boards"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="poses">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">2</span><h2>Nexi pose pack</h2><p>Transparent PNGs rendered from the real 3D Nexi, for Canva, decks and posts.</p><button class="btn" type="button" id="zip-poses">Download all poses (ZIP)</button></div>
+    <div class="pose-grid" id="pose-grid"></div>
+    <p class="note-sm">Nexi is the mascot: keep the proportions, never recolour her shell or add a second logo on top. She stands in front of the brand blue disc on light backgrounds so the white shell reads.</p>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">3</span><h2>Specs &amp; launch checklist</h2><p>What each platform wants, and what to check before you press publish.</p></div>
+    <div class="card">
+      <table class="specs">
+        <thead><tr><th>Placement</th><th>Image size</th><th>Files</th><th>Text limits (recommended)</th><th>Safe zones</th></tr></thead>
+        <tbody id="spec-rows"></tbody>
+      </table>
+      <p class="note-sm">Typical specs, reviewed October 2026. Platforms change them, so confirm in each Ads Manager before a big launch. The studio exports exactly these pixel sizes.</p>
+    </div>
+    <div class="card checklist">
+      <h3>Before you launch</h3>
+      <ol>
+        <li><b>The landing page answers the ad.</b> Every campaign points at a live solution page on technext.asia. The old <code>/lp/</code> ads page now redirects to the home page, so do not use it.</li>
+        <li><b>Use the tracking link, not the bare URL.</b> Each placement has its own <code>utm_source</code>, <code>utm_medium=paid_social</code> (YouTube: <code>paid_video</code>), <code>utm_campaign</code> and <code>utm_content</code>, so GA4 shows which ad and size brought the lead.</li>
+        <li><b>Pixels and tags.</b> Confirm with the web team that the Meta Pixel, LinkedIn Insight Tag and TikTok Pixel are on technext.asia before spending; without them the platforms cannot optimise for leads.</li>
+        <li><b>Claims.</b> Only the figures in the brand guide (10+ countries, 11+ enterprise clients, 3 offices, 4 AI disciplines). No prices, no &ldquo;certified&rdquo;, no ISO claim. The Odoo badge goes on Odoo campaigns only.</li>
+        <li><b>9:16 safe zones.</b> Turn &ldquo;Platform UI on top&rdquo; on and check nothing important hides under the profile row, the caption or the right-hand buttons.</li>
+        <li><b>Video.</b> The studio records an 8-second silent clip. Add music or a voice-over in TikTok, Meta or CapCut, and burn in captions; most people watch muted.</li>
+        <li><b>Name ads the same way everywhere:</b> <code>TN_platform_campaign_placement_yyyymm</code>, e.g. <code>TN_linkedin_one-system_single-1x1_202610</code>. The downloads already use this pattern.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="rec" id="rec" hidden role="dialog" aria-modal="true" aria-labelledby="rec-title">
+  <div class="rec-box">
+    <div class="rec-hd"><b id="rec-title">Video</b><button class="btn sm" type="button" id="rec-close" aria-label="Close">Close</button></div>
+    <div class="rec-stage"><canvas id="rec-cv"></canvas></div>
+    <div class="rec-bar"><i id="rec-prog"></i></div>
+    <div class="rec-acts">
+      <button class="btn" type="button" id="rec-play">Play preview</button>
+      <button class="btn p" type="button" id="rec-go">Record &amp; download</button>
+      <span class="rec-msg" id="rec-msg"></span>
+    </div>
+    <p class="note-sm">Recording runs in real time (8 seconds), so keep this tab in front. Chrome and Edge save MP4; other browsers save WebM, which TikTok and Meta do not accept, so convert it first.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>TechNext Pte. Ltd. &middot; Marketing Hub &middot; internal use</span>
+    <a href="index.html">All tools</a>
+    <a href="branding.html">Brand guide</a>
+    <a href="https://github.com/TechNextSG/technext-marketing-hub" target="_blank" rel="noopener">Edit this page</a>
+    <span class="right">Updated 2 Oct 2026</span>
+  </div>
+</footer>
+
+<script src="assets/ads/data.js?v=1"></script>
+<script src="assets/ads/render.js?v=1"></script>
+<script src="assets/ads/ads.js?v=1"></script>
+</body>
+</html>
