@@ -54,7 +54,9 @@
     store: 'M3 9l1.5-5h15L21 9M4 9v11h16V9M3 9h18M10 20v-6h4v6', cart: 'M3 4h2l2.4 11h11L21 7H6.2M9 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM18 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z',
     check: 'M5 12.5l4.5 4.5L19 7', file: 'M14 2H6v20h12V6zM14 2v4h4M9 13h6M9 17h6', x: 'M7 7l10 10M17 7L7 17',
     chat: 'M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z', mail: 'M3 5h18v14H3zM3 6l9 7 9-7', grid: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z',
-    bolt: 'M13 2L4 14h7l-1 8 9-12h-7z'
+    bolt: 'M13 2L4 14h7l-1 8 9-12h-7z', search: 'M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4.2-4.2',
+    cap: 'M2 9l10-5 10 5-10 5zM6 11v5c3 2.2 9 2.2 12 0v-5M22 9v6', plug: 'M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0zM12 17v5',
+    life: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5.6 5.6l3.6 3.6M14.8 14.8l3.6 3.6M18.4 5.6l-3.6 3.6M9.2 14.8l-3.6 3.6'
   };
   var PATH = {};
   function icon(g, name, x, y, size, col, lw) {
@@ -62,6 +64,12 @@
     g.save(); g.translate(x, y); g.scale(size / 24, size / 24);
     g.strokeStyle = col; g.lineWidth = lw || 2; g.lineCap = 'round'; g.lineJoin = 'round'; g.stroke(p); g.restore();
   }
+  /* official Odoo app icons by app name (data.js ODOO_APPS); stroke icons stand in for steps that are not an app */
+  var ODOO = D.ODOO_APPS || {};
+  function appMod(name) { var k = String(name || '').trim().toLowerCase(); for (var a in ODOO) if (a.toLowerCase() === k) return ODOO[a]; return null; }
+  function appSrc(mod) { return 'assets/ads/odoo/' + mod + '.svg'; }
+  var STEP_ICON = { discovery: 'search', training: 'cap', integration: 'plug', support: 'life', request: 'file', quote: 'file', order: 'check',
+    deliver: 'box', ship: 'box', receive: 'box', invoice: 'receipt', bill: 'receipt', pay: 'check', paid: 'check', report: 'chart', close: 'check' };
   var APP_ICON = { sales: 'chart', inventory: 'box', accounting: 'receipt', invoicing: 'receipt', crm: 'users', pos: 'store', 'point of sale': 'store', purchase: 'cart', email: 'mail' };
 
   /* ------------------------------------------------------------------ text */
@@ -208,6 +216,7 @@
     return { s: s, X: X, Y: Y, r: 640 * s };
   }
 
+  function bandOn0(sp) { return (sp.prop === 'flow' || sp.prop === 'apps') && (sp.items || []).filter(Boolean).length > 0; }
   function plan(W, H, sp) {
     var key = W + 'x' + H + '|' + JSON.stringify(sp);
     if (MEMO[key]) return MEMO[key];
@@ -238,16 +247,27 @@
       L.occ.push(L.kick); y += kh;
     }
     /* --- headline */
-    var HS = { V: [112, 62, 3], P: [100, 58, 3], S: [90, 52, 3], L: [W / H > 1.85 ? 92 : 104, 54, 3] }[k];
+    var HS = { V: [bandOn0(sp) ? 100 : 112, 62, 3], P: [100, 58, 3], S: [90, 52, 3], L: [W / H > 1.85 ? 92 : 104, 54, 3] }[k];
     y += { V: 34, P: 28, S: 26, L: 26 }[k] * u;
     var hT = fit(g, sp.headline || '', { weight: 800, family: FD, max: HS[0] * u, min: HS[1] * u, maxW: colW, maxLines: HS[2], lh: 1.06, ls: -0.022, balance: true });
     L.head = { T: hT, x: x0, y: y }; L.head.rects = textRects(hT, x0, y, align);
     if (hT.clipped) L.flags.push('headline too long');
     L.occ = L.occ.concat(L.head.rects); y += hT.h;
+    /* --- Odoo band: the workflow strip or the app row (landscape: in the column, after the sub line) */
+    var bandOn = (sp.prop === 'flow' || sp.prop === 'apps') && (sp.items || []).filter(Boolean).length > 0;
+    function addBand(bx, bw) {
+      y += { V: 40, P: 36, S: 30, L: 28 }[k] * u;
+      L.band = layoutBand(g, sp, bx, y, bw, u, k);
+      var o = { x: L.band.x, y: L.band.y - 8 * u, w: L.band.w, h: L.band.h + 16 * u }; L.occ.push(o); y += L.band.h;
+      if (L.band.more) L.flags.push(L.band.more + ' item(s) did not fit the strip');
+      return o;
+    }
+    if (bandOn && k !== 'L') addBand(k === 'V' ? 90 * u : x0, k === 'V' ? W - 180 * u : W - 2 * m);
     /* --- columns below the headline */
     var subW = { V: colW * 0.96, P: 0.46 * W, S: 0.43 * W, L: 0.5 * W }[k];
     var SS = { V: [40, 32, 3], P: [34, 27, 5], S: [30, 24, 4], L: [W / H > 1.85 ? 34 : 36, 26, W / H > 1.85 ? 2 : 3] }[k];
-    var subT = sp.sub ? fit(g, sp.sub, { weight: 500, family: FB, max: SS[0] * u, min: SS[1] * u, maxW: subW, maxLines: SS[2], lh: 1.42 }) : null;
+    var subOn = sp.sub && !(bandOn && (k === 'V' || k === 'S' || (k === 'L' && W / H > 1.85)));
+    var subT = subOn ? fit(g, sp.sub, { weight: 500, family: FB, max: SS[0] * u, min: SS[1] * u, maxW: subW, maxLines: SS[2], lh: 1.42 }) : null;
     var ctaH = { V: 102, P: 92, S: 88, L: 92 }[k] * u;
     /* Nexi zone (V waits for the text column below) */
     var z = null, nx = null;
@@ -256,7 +276,7 @@
       L.nexi = nx; L.zone = z; L.focus = { x: nx.X, y: nx.Y, r: nx.r };
     }
     if (k === 'P') { var y0p = Math.max(y + 120 * u, H * 0.37); zoneNexi({ x0: 0.44 * W, x1: W - 26 * u, y0: y0p, y1: H + 0.07 * (H - y0p), cx: W * 0.72 }); }
-    else if (k === 'S') { var y0s = y + 104 * u; zoneNexi({ x0: 0.455 * W, x1: W - 20 * u, y0: y0s, y1: H + 0.13 * (H - y0s), cx: W * 0.74 }); }
+    else if (k === 'S') { var y0s = y + (bandOn ? 84 : 104) * u; zoneNexi({ x0: (bandOn ? 0.4 : 0.455) * W, x1: W - 20 * u, y0: y0s, y1: H + (bandOn ? 0.17 : 0.13) * (H - y0s), cx: W * 0.74 }); }
     else if (k === 'L') zoneNexi({ x0: 0.565 * W, x1: W - 18 * u, y0: H * 0.05, y1: H - 8 * u, cx: W * 0.79 });
     L.head2 = function (A) { return { x: nx.X + (A.hx - A.ax) * nx.s, y: nx.Y + (A.hy - A.ay) * nx.s, R: 255 * nx.s }; };
     if (subT) {
@@ -264,6 +284,15 @@
       L.sub = { T: subT, x: x0, y: y }; L.sub.rects = textRects(subT, x0, y, align);
       L.occ = L.occ.concat(L.sub.rects); y += subT.h;
       if (subT.clipped) L.flags.push('sub line too long');
+    }
+    if (bandOn && k === 'L') {
+      var bo = addBand(x0, colW * 0.92);
+      if (L.band.y + L.band.h > H - m - ctaH - 14 * u && L.sub) {
+        /* no room for both: the strip wins, the sub line goes (it is in the ad copy anyway) */
+        var drop = L.sub.rects; L.occ = L.occ.filter(function (r) { return r !== bo && drop.indexOf(r) < 0; });
+        y = L.sub.y - 26 * u; L.sub = null; addBand(x0, colW * 0.92);
+      }
+      if (L.band.y + L.band.h > H - m - ctaH - 14 * u) L.flags.push('workflow strip runs into the button');
     }
     /* CTA */
     var cs = Math.round(ctaH * 0.35);
@@ -318,18 +347,101 @@
     return null;
   }
 
+
+  /* Odoo band layout. apps: one row of tiles (as many as fit at 96u+). flow: up to 6 steps, evenly spaced. */
+  function layoutBand(g, sp, x, y, w, u, k) {
+    var items = (sp.items || []).filter(Boolean), i;
+    if (sp.prop === 'apps') {
+      var gap = 18 * u, n = Math.min(items.length, 8), ts;
+      for (; n > 1; n--) { ts = Math.min(150 * u, (w - gap * (n - 1)) / n); if (ts >= 96 * u) break; }
+      ts = Math.min(150 * u, (w - gap * (n - 1)) / n);
+      var ls = Math.round(clamp(ts * 0.17, 17 * u, 24 * u)), list = [], widest = 0;
+      setFont(g, '600 ' + ls + 'px ' + FB, 0);
+      for (i = 0; i < n; i++) { var nm = String(items[i]).split('|')[0].trim(); widest = Math.max(widest, g.measureText(nm).width); list.push({ t: nm, mod: appMod(nm), x: x + i * (ts + gap), y: y, s: ts }); }
+      if (widest > ts + gap * 0.7) ls = Math.max(Math.round(13 * u), Math.floor(ls * (ts + gap * 0.7) / widest));
+      var bw = n * ts + (n - 1) * gap, off = k === 'V' ? (w - bw) / 2 : 0;
+      list.forEach(function (l) { l.x += off; });
+      return { kind: 'apps', items: list, x: x + off, y: y, w: bw, h: ts + 12 * u + ls * 1.3, ls: ls, more: items.length - n };
+    }
+    var steps = items.slice(0, 6).map(function (t) {
+      var p = String(t).split('|'), st = p[0].trim(), cap = (p[1] || '').trim();
+      return { t: st, cap: cap, mod: appMod(cap) || appMod(st), ic: STEP_ICON[st.toLowerCase()] || 'grid' };
+    });
+    var c = steps.length, ns = clamp(w / (c * 1.85), 62 * u, 112 * u), span = c > 1 ? (w - ns) / (c - 1) : 0;
+    if (c > 1 && span - ns < 34 * u) { ns = Math.max(48 * u, (w - 34 * u * (c - 1)) / c); span = (w - ns) / (c - 1); }
+    var fl = Math.round(clamp(ns * 0.25, 18 * u, 28 * u)), fc = Math.round(fl * 0.8), lim = c > 1 ? span - 10 * u : w, wl = 0, wc = 0;
+    setFont(g, '700 ' + fl + 'px ' + FB, 0); steps.forEach(function (st) { wl = Math.max(wl, g.measureText(st.t).width); });
+    if (wl > lim) fl = Math.max(Math.round(14 * u), Math.floor(fl * lim / wl));
+    setFont(g, '600 ' + fc + 'px ' + FB, 0); steps.forEach(function (st) { wc = Math.max(wc, g.measureText(st.cap).width); });
+    if (wc > lim) fc = Math.max(Math.round(12 * u), Math.floor(fc * lim / wc));
+    var anyCap = steps.some(function (st) { return st.cap; });
+    return { kind: 'flow', steps: steps, x: x, y: y, w: w, ns: ns, span: span, ls: fl, cs: fc, h: ns + 14 * u + fl * 1.25 + (anyCap ? fc * 1.4 : 0), more: items.length - steps.length };
+  }
+
+  /* Odoo band drawing. The flow builds node by node, then a dot runs the whole chain and the last step gets its tick. */
+  function drawBand(g, L, t, u) {
+    var B = L.band, dark = L.dark; if (!B) return;
+    if (B.kind === 'apps') {
+      B.items.forEach(function (it, i) {
+        var e = prog(t, 1.2 + i * 0.08, 0.42); if (e <= 0) return;
+        var sc = 0.8 + 0.2 * back(e), cx = it.x + it.s / 2, cy = it.y + it.s / 2, im = it.mod && GOT[appSrc(it.mod)], is = it.s * 0.58;
+        g.save(); g.globalAlpha = Math.min(1, e * 1.7); g.translate(cx, cy); g.scale(sc, sc); g.translate(-cx, -cy);
+        card(g, it.x, it.y, it.s, it.s, it.s * 0.24, u);
+        if (im) g.drawImage(im, cx - is / 2, cy - is / 2, is, is); else icon(g, APP_ICON[it.t.toLowerCase()] || 'grid', cx - is * 0.4, cy - is * 0.4, is * 0.8, C.blue, 2.1);
+        setFont(g, '600 ' + B.ls + 'px ' + FB, 0); g.textAlign = 'center'; g.fillStyle = dark ? '#FFFFFF' : C.ink;
+        g.fillText(it.t, cx, it.y + it.s + 10 * u + B.ls * 0.95); g.textAlign = 'left';
+        g.restore();
+      });
+      return;
+    }
+    var n = B.steps.length, ns = B.ns, cy = B.y + ns / 2, T0 = 1.3, ST = 0.2, i;
+    var tok = t == null ? null : clamp((t - 2.7) / 3, 0, 1) * (n - 1);
+    function cxOf(j) { return n > 1 ? B.x + ns / 2 + j * B.span : B.x + B.w / 2; }
+    for (i = 0; i < n - 1; i++) {
+      var pc = eo(prog(t, T0 + 0.12 + i * ST, 0.3)); if (pc <= 0) continue;
+      var x1 = cxOf(i) + ns / 2 + 9 * u, x2 = cxOf(i + 1) - ns / 2 - 9 * u, xe = x1 + (x2 - x1) * pc, lit = tok == null || tok >= i + 1;
+      g.strokeStyle = lit ? (dark ? '#FFFFFF' : C.blue) : (dark ? 'rgba(255,255,255,.45)' : C.sky);
+      g.lineWidth = 3.2 * u; g.lineCap = 'round'; g.lineJoin = 'round';
+      g.setLineDash([0.1, 9 * u]); g.beginPath(); g.moveTo(x1, cy); g.lineTo(Math.max(x1, xe - 10 * u), cy); g.stroke(); g.setLineDash([]);
+      if (pc >= 1) { g.beginPath(); g.moveTo(x2 - 9 * u, cy - 8 * u); g.lineTo(x2, cy); g.lineTo(x2 - 9 * u, cy + 8 * u); g.stroke(); }
+    }
+    B.steps.forEach(function (st, j) {
+      var e = prog(t, T0 + j * ST, 0.45); if (e <= 0) return;
+      var cx = cxOf(j), sc = 0.78 + 0.22 * back(e), x = cx - ns / 2, y = B.y, last = j === n - 1;
+      var reached = tok != null && tok >= j - 0.001, im = st.mod && GOT[appSrc(st.mod)], is = ns * 0.56;
+      g.save(); g.globalAlpha = Math.min(1, e * 1.7); g.translate(cx, cy); g.scale(sc, sc); g.translate(-cx, -cy);
+      card(g, x, y, ns, ns, ns * 0.28, u);
+      if (reached || (t == null && last)) { g.strokeStyle = dark ? '#9CC0FF' : C.blue; g.lineWidth = 3.4 * u; rr(g, x - 6 * u, y - 6 * u, ns + 12 * u, ns + 12 * u, ns * 0.28 + 6 * u); g.stroke(); }
+      if (im) g.drawImage(im, cx - is / 2, cy - is / 2, is, is); else icon(g, st.ic, cx - is * 0.42, cy - is * 0.42, is * 0.84, C.blue, 2.1);
+      if (last && (t == null || tok >= n - 1 - 0.001)) {
+        var br = ns * 0.18, bx = x + ns - br * 0.25, by = y + br * 0.25;
+        g.fillStyle = '#FFFFFF'; g.beginPath(); g.arc(bx, by, br + 3 * u, 0, 7); g.fill();
+        g.fillStyle = C.blue; g.beginPath(); g.arc(bx, by, br, 0, 7); g.fill();
+        icon(g, 'check', bx - br * 0.62, by - br * 0.62, br * 1.24, '#FFFFFF', 3.4);
+      }
+      setFont(g, '700 ' + B.ls + 'px ' + FB, 0); g.textAlign = 'center'; g.fillStyle = dark ? '#FFFFFF' : C.ink;
+      var ly = y + ns + 14 * u + B.ls * 0.92; g.fillText(st.t, cx, ly);
+      if (st.cap) { setFont(g, '600 ' + B.cs + 'px ' + FB, 0); g.fillStyle = dark ? '#BFD3F7' : C.ink3; g.fillText(st.cap, cx, ly + B.cs * 1.4); }
+      g.textAlign = 'left'; g.restore();
+    });
+    if (tok != null && tok > 0 && tok < n - 1) {
+      var seg = Math.floor(tok), f = tok - seg, a = cxOf(seg) + ns / 2 + 9 * u, b = cxOf(seg + 1) - ns / 2 - 9 * u;
+      if (f > 0.04 && f < 0.96) {
+        var px = a + (b - a) * f, hr = g.createRadialGradient(px, cy, 0, px, cy, 20 * u);
+        hr.addColorStop(0, dark ? 'rgba(255,255,255,.55)' : 'rgba(49,103,202,.45)'); hr.addColorStop(1, 'rgba(49,103,202,0)');
+        g.fillStyle = hr; g.beginPath(); g.arc(px, cy, 20 * u, 0, 7); g.fill();
+        g.fillStyle = dark ? '#FFFFFF' : C.blue; g.beginPath(); g.arc(px, cy, 8 * u, 0, 7); g.fill();
+      }
+    }
+  }
+
   /* props: small white cards in a column box */
   function layoutProps(g, sp, box, u, k) {
     var kind = sp.prop || 'none', items = (sp.items || []).filter(Boolean), out = [], y = box.y, gap = 16 * u, maxN = box.max;
     if (kind === 'none' || !items.length || box.h < 80 * u) return out;
     var fs = Math.round((k === 'V' ? 28 : 25) * u);
     function room(h) { return y + h <= box.y + box.h; }
-    if (kind === 'apps') {
-      var ts = Math.min(118 * u, (box.w - gap * 3) / 4), x = box.x;
-      if (!room(ts)) return out;
-      items.slice(0, 4).forEach(function (t) { out.push({ k: 'app', t: t, x: x, y: y, w: ts, h: ts, fs: Math.round(ts * 0.18) }); x += ts + gap; });
-      return out;
-    }
+    if (kind === 'apps' || kind === 'flow') return out;
     if (kind === 'stats') {
       var cw = (box.w - gap) / 2, ch = 116 * u, i;
       for (i = 0; i < Math.min(items.length, maxN); i++) {
@@ -568,6 +680,7 @@
     if (L.kick) drawKicker(g, L.kick, dark, eo(prog(t, 0.25, 0.4)), u);
     drawText(g, L.head.T, L.head.x, L.head.y, L.align, dark ? '#FFFFFF' : C.ink, dark ? '#9CC0FF' : C.blue, 0.4, t, u, dark ? 'rgba(156,192,255,.55)' : 'rgba(111,160,245,.55)');
     if (L.sub) drawText(g, L.sub.T, L.sub.x, L.sub.y, L.align, dark ? '#D6E2FA' : C.ink2, dark ? '#D6E2FA' : C.ink2, 0.85, t, u, null);
+    drawBand(g, L, t, u);
     drawProps(g, L, t, u);
     if (L.cta) {
       var ce = prog(t, 1.8, 0.5), pulse = t == null ? 0 : 0.045 * (bell(prog(t, 4.6, 0.6)) + bell(prog(t, 6.4, 0.6)));
@@ -593,10 +706,11 @@
       var L = plan(W, H, sp), list = [load(poseSrc(sp.pose)), load(LOGO[L.dark ? 'white' : 'blue'])];
       if (sp.pose2) list.push(load(poseSrc(sp.pose2)));
       if (sp.badge) list.push(load(LOGO.odoo));
+      if (L.band) (L.band.items || L.band.steps).forEach(function (it) { if (it.mod) list.push(load(appSrc(it.mod))); });
       list.push(bgRaster(sp.bg, W, H, L.focus));
       return Promise.all(list.map(function (p) { return p.catch(function (e) { return e; }); })).then(function () { return L; });
     });
   }
 
-  window.TNAds = { prepare: prepare, draw: draw, plan: plan, shape: shape, DUR: DUR, load: load, poseSrc: poseSrc };
+  window.TNAds = { prepare: prepare, draw: draw, plan: plan, shape: shape, DUR: DUR, load: load, poseSrc: poseSrc, appSrc: appSrc, appMod: appMod };
 })();

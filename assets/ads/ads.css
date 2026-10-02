@@ -19,7 +19,7 @@
 code{font-size:.9em;background:var(--blue-050);color:var(--blue-700);padding:1px 6px;border-radius:6px}
 
 /* campaign tabs */
-.concepts{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.concepts{display:flex;gap:26px;overflow-x:auto;padding:4px 2px 14px;scrollbar-width:thin;scroll-snap-type:x proximity}
 .concept{flex:none;scroll-snap-align:start;display:flex;gap:12px;align-items:center;text-align:left;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px 14px 8px 8px;cursor:pointer;box-shadow:var(--shadow-sm);transition:border-color .2s var(--ease),box-shadow .2s var(--ease),transform .2s var(--ease);font:inherit;color:var(--ink)}
 .concept:hover{border-color:var(--blue-300);transform:translateY(-1px)}
 .concept[aria-selected="true"]{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-050),var(--shadow-sm)}
@@ -53,6 +53,13 @@ code{font-size:.9em;background:var(--blue-050);color:var(--blue-700);padding:1px
 .poses-pick button img{width:100%;height:100%;object-fit:contain}
 .poses-pick button[aria-checked="true"]{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue);background:#fff}
 .more{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
+.apppick{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;max-height:132px;overflow:auto;padding:2px;scrollbar-width:thin}
+.apppick button{aspect-ratio:1;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px;cursor:pointer;transition:border-color .15s var(--ease),transform .15s var(--ease)}
+.apppick button:hover{border-color:var(--blue-300);transform:translateY(-1px)}
+.apppick button img{width:100%;height:100%;display:block}
+.cgroup{flex:none;display:flex;flex-direction:column;gap:8px}
+.cg-h{font:700 11.5px/1 var(--font-body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);padding-left:2px}
+.cg-row{display:flex;gap:12px}
 .more summary{cursor:pointer;font-weight:600;font-size:13.5px;color:var(--blue-700);margin-bottom:10px}
 .chk{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;margin:2px 0 12px;cursor:pointer}
 .chk input{margin-top:3px;accent-color:var(--blue)}

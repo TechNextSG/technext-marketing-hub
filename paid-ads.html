@@ -52,7 +52,7 @@
     <div class="copyc">
     <span class="kicker"><i></i>Paid social &middot; starring Nexi</span>
     <h1>Paid ads for every platform, <em>starring Nexi.</em></h1>
-    <p>Six ready campaigns in TechNext branding, drawn on the four brand backgrounds with the real 3D Nexi as the model. Edit the words once and every size updates: Facebook, Instagram, LinkedIn, TikTok, X and YouTube, each in its own feed preview, with ad copy, tracking links, PNGs and short videos.</p>
+    <p>Eleven ready campaigns in TechNext branding, seven of them for Odoo with its own app icons and workflows: order-to-cash, procure-to-pay, make to order and month-end close. Nexi is the model, on the four brand backgrounds. Edit the words once and every size updates for Facebook, Instagram, LinkedIn, TikTok, X and YouTube, with ad copy, tracking links, PNGs and short videos.</p>
     <div class="acts">
       <a class="btn p" href="#studio">Open the studio</a>
       <button class="btn" type="button" id="zip-all">Download this campaign (ZIP)</button>
@@ -84,13 +84,14 @@
         <div class="f"><span class="lbl">Nexi pose <small id="pose-name"></small></span><div class="poses-pick" id="f-pose" role="radiogroup" aria-label="Nexi pose"></div></div>
 
         <details class="more">
-          <summary>Video, extras and badge</summary>
+          <summary>Odoo apps, workflow, video and badge</summary>
           <div class="f2">
             <label class="f"><span>Video: second pose</span><select id="f-pose2" data-k="pose2"></select></label>
             <label class="f"><span>Video: second line</span><input id="f-bubble2" data-k="bubble2" maxlength="26"></label>
           </div>
           <label class="f"><span>Extras next to Nexi</span><select id="f-prop" data-k="prop"></select></label>
-          <label class="f"><span>Extra items <small>one per line &middot; figures as 10+|countries</small></span><textarea id="f-items" rows="3"></textarea></label>
+          <label class="f"><span>Extra items <small id="items-hint">one per line</small></span><textarea id="f-items" rows="4"></textarea></label>
+          <div class="f" id="apppick-wrap"><span class="lbl">Add an Odoo app <small>official icons, as on technext.asia</small></span><div class="apppick" id="apppick"></div></div>
           <label class="chk"><input type="checkbox" id="f-badge"> <span>Odoo Ready Partner badge <small>Odoo ads only, never on website or marketing ads</small></span></label>
           <label class="f"><span>Landing page</span><input id="f-url" type="url" spellcheck="false"></label>
         </details>
@@ -134,7 +135,7 @@
         <li><b>The landing page answers the ad.</b> Every campaign points at a live solution page on technext.asia. The old <code>/lp/</code> ads page now redirects to the home page, so do not use it.</li>
         <li><b>Use the tracking link, not the bare URL.</b> Each placement has its own <code>utm_source</code>, <code>utm_medium=paid_social</code> (YouTube: <code>paid_video</code>), <code>utm_campaign</code> and <code>utm_content</code>, so GA4 shows which ad and size brought the lead.</li>
         <li><b>Pixels and tags.</b> Confirm with the web team that the Meta Pixel, LinkedIn Insight Tag and TikTok Pixel are on technext.asia before spending; without them the platforms cannot optimise for leads.</li>
-        <li><b>Claims.</b> Only the figures in the brand guide (10+ countries, 11+ enterprise clients, 3 offices, 4 AI disciplines). No prices, no &ldquo;certified&rdquo;, no ISO claim. The Odoo badge goes on Odoo campaigns only.</li>
+        <li><b>Claims.</b> Only the figures in the brand guide (10+ countries, 11+ enterprise clients, 3 offices, 4 AI disciplines). No prices, no &ldquo;certified&rdquo;, no ISO claim. The Odoo badge and the Odoo app icons go on Odoo campaigns only, unaltered: they are Odoo&rsquo;s artwork, the same files technext.asia uses. App names follow odoo.com (Invoicing and Accounting are two apps).</li>
         <li><b>9:16 safe zones.</b> Turn &ldquo;Platform UI on top&rdquo; on and check nothing important hides under the profile row, the caption or the right-hand buttons.</li>
         <li><b>Video.</b> The studio records an 8-second silent clip. Add music or a voice-over in TikTok, Meta or CapCut, and burn in captions; most people watch muted.</li>
         <li><b>Name ads the same way everywhere:</b> <code>TN_platform_campaign_placement_yyyymm</code>, e.g. <code>TN_linkedin_one-system_single-1x1_202610</code>. The downloads already use this pattern.</li>

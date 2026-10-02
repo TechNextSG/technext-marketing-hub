@@ -207,17 +207,27 @@
     $$('#f-bg button').forEach(function (bt) { bt.setAttribute('aria-checked', String(bt.getAttribute('data-v') === cr.bg)); });
     $$('#f-pose button').forEach(function (bt) { bt.setAttribute('aria-checked', String(bt.getAttribute('data-v') === cr.pose)); });
     $('#pose-name').textContent = D.POSE_NAMES[cr.pose] || '';
+    propUI(cr.prop);
     $$('#concepts .concept').forEach(function (bt, i) { bt.setAttribute('aria-selected', String(i === cur)); bt.tabIndex = i === cur ? 0 : -1; });
   }
+  var HINT = { flow: 'one step per line: Step|Odoo app, up to 6', apps: 'one Odoo app per line, up to 8', stats: 'figures as 10+|countries',
+    chat: 'customer line, then the reply', sheets: 'crossed-out files, last line = the fix', checks: 'one per line', site: 'chat widget greeting' };
+  function propUI(prop) { $('#items-hint').textContent = HINT[prop] || 'one per line'; $('#apppick-wrap').hidden = prop !== 'flow' && prop !== 'apps'; }
   function setupEditor() {
     $('#f-bg').innerHTML = D.BACKGROUNDS.map(function (bg) { return '<button type="button" role="radio" data-v="' + bg.id + '" title="' + esc(bg.note) + '"><i class="bg-' + bg.id + '"></i><span>' + bg.name + '</span></button>'; }).join('');
     var poses = Object.keys(D.POSES);
     $('#f-pose').innerHTML = poses.map(function (p) { return '<button type="button" role="radio" data-v="' + p + '" title="' + esc(D.POSE_NAMES[p]) + '"><img src="' + R.poseSrc(p) + '" alt="' + esc(D.POSE_NAMES[p]) + '" loading="lazy"></button>'; }).join('');
     $('#f-pose2').innerHTML = '<option value="">None (one pose)</option>' + poses.map(function (p) { return '<option value="' + p + '">' + esc(D.POSE_NAMES[p]) + '</option>'; }).join('');
     $('#f-prop').innerHTML = D.PROPS.map(function (p) { return '<option value="' + p.id + '">' + esc(p.name) + '</option>'; }).join('');
+    $('#apppick').innerHTML = Object.keys(D.ODOO_APPS).map(function (n) { return '<button type="button" data-app="' + esc(n) + '" title="Add ' + esc(n) + '"><img src="' + R.appSrc(D.ODOO_APPS[n]) + '" alt="' + esc(n) + '" loading="lazy"></button>'; }).join('');
+    $('#apppick').addEventListener('click', function (e) {
+      var bt = e.target.closest('button'); if (!bt) return;
+      var ta = $('#f-items'), app = bt.getAttribute('data-app'), line = $('#f-prop').value === 'flow' ? 'Step|' + app : app;
+      ta.value = ta.value.replace(/\s+$/, '') + (ta.value.trim() ? '\n' : '') + line; ta.dispatchEvent(new Event('input', { bubbles: true }));
+    });
     $('#editor').addEventListener('input', function (e) {
       var t = e.target, k = t.getAttribute('data-k');
-      if (k) { edit(['creative', k], t.value); }
+      if (k) { edit(['creative', k], t.value); if (k === 'prop') propUI(t.value); }
       else if (t.id === 'f-items') edit(['creative', 'items'], t.value.split('\n').map(function (s) { return s.trim(); }).filter(Boolean));
       else if (t.id === 'f-badge') edit(['creative', 'badge'], t.checked);
       else if (t.id === 'f-url') { edit(['url'], t.value.trim()); bindAll(); return; }
@@ -232,9 +242,13 @@
 
   /* ------------------------------------------------------------ campaign tabs */
   function setupConcepts() {
-    $('#concepts').innerHTML = D.CONCEPTS.map(function (c, i) {
-      return '<button class="concept" type="button" role="tab" data-i="' + i + '"><canvas width="144" height="144" data-i="' + i + '"></canvas><span><b>' + esc(c.name) + '</b><small>' + esc(c.creative.kicker) + '</small></span></button>';
-    }).join('');
+    /* consecutive campaigns of one group share a labelled row */
+    var GROUPS = { odoo: 'Odoo ERP', ai: 'AI, web and company' }, html = '', lastG = null;
+    D.CONCEPTS.forEach(function (c, i) {
+      if (c.group !== lastG) { html += (lastG === null ? '' : '</div></div>') + '<div class="cgroup"><span class="cg-h">' + esc(GROUPS[c.group] || '') + '</span><div class="cg-row">'; lastG = c.group; }
+      html += '<button class="concept" type="button" role="tab" data-i="' + i + '"><canvas width="144" height="144" data-i="' + i + '"></canvas><span><b>' + esc(c.name) + '</b><small>' + esc(c.creative.kicker) + '</small></span></button>';
+    });
+    $('#concepts').innerHTML = html + '</div></div>';
     $('#concepts').addEventListener('click', function (e) { var bt = e.target.closest('.concept'); if (bt) select(+bt.getAttribute('data-i')); });
     $('#concepts').addEventListener('keydown', function (e) {
       if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
@@ -374,7 +388,7 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && REC) closeRec(); });
 
   /* ------------------------------------------------------------ static sections */
-  $('#stats').innerHTML = [[D.PLATFORMS.length, 'platforms'], [D.CONCEPTS.length, 'ready campaigns'], [COUNT_PL, 'placements, exact sizes'], [Object.keys(D.POSES).length, 'Nexi poses']]
+  $('#stats').innerHTML = [[D.PLATFORMS.length, 'platforms'], [D.CONCEPTS.length, 'campaigns, ' + D.CONCEPTS.filter(function (c) { return c.group === 'odoo'; }).length + ' for Odoo'], [COUNT_PL, 'placements, exact sizes'], [Object.keys(D.POSES).length, 'Nexi poses']]
     .map(function (s) { return '<div class="stat"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>'; }).join('');
   $('#pose-grid').innerHTML = Object.keys(D.POSES).map(function (p) {
     var m = D.POSES[p];

@@ -19,14 +19,149 @@ window.ADS = (function () {
   ];
 
   var PROPS = [
-    { id: 'chat', name: 'Chat bubbles' }, { id: 'sheets', name: 'Spreadsheets to one system' }, { id: 'apps', name: 'App tiles' },
-    { id: 'checks', name: 'Checklist' }, { id: 'stats', name: 'Approved figures' }, { id: 'site', name: 'Website window' }, { id: 'none', name: 'None' }
+    { id: 'flow', name: 'Workflow (Odoo app per step)' }, { id: 'apps', name: 'Odoo app row' }, { id: 'chat', name: 'Chat bubbles' },
+    { id: 'sheets', name: 'Spreadsheets to one system' }, { id: 'checks', name: 'Checklist' }, { id: 'stats', name: 'Approved figures' },
+    { id: 'site', name: 'Website window' }, { id: 'none', name: 'None' }
   ];
 
-  /* Six campaigns. creative = what is drawn; copy = what goes into each Ads Manager. */
+  /* Official Odoo app icons, copied from TechNext-Website assets/img/odoo (the same files technext.asia shows).
+     Key = the app's name on odoo.com and technext.asia; value = the icon file, which is Odoo's module name. */
+  var ODOO_APPS = { 'Accounting': 'accountant', 'Invoicing': 'account', 'Sales': 'sale', 'CRM': 'crm', 'Inventory': 'stock', 'Purchase': 'purchase',
+    'Manufacturing': 'mrp', 'Point of Sale': 'point_of_sale', 'Restaurant': 'pos_restaurant', 'eCommerce': 'website_sale', 'Website': 'website',
+    'Project': 'project', 'Timesheets': 'hr_timesheet', 'Helpdesk': 'helpdesk', 'Field Service': 'industry_fsm', 'Planning': 'planning',
+    'Employees': 'hr', 'Payroll': 'hr_payroll', 'Time Off': 'hr_holidays', 'Recruitment': 'hr_recruitment', 'Appraisals': 'hr_appraisal',
+    'Referrals': 'hr_referral', 'Expenses': 'hr_expense', 'Documents': 'documents', 'Sign': 'sign', 'Spreadsheet': 'spreadsheet_dashboard',
+    'Knowledge': 'knowledge', 'Discuss': 'mail', 'Approvals': 'approvals', 'Appointments': 'appointment', 'Email Marketing': 'mass_mailing',
+    'SMS Marketing': 'mass_mailing_sms', 'Marketing Automation': 'marketing_automation', 'Social Marketing': 'social', 'Events': 'event',
+    'Surveys': 'survey', 'Live Chat': 'im_livechat', 'WhatsApp': 'whatsapp', 'Phone': 'voip', 'Quality': 'quality_control',
+    'Maintenance': 'maintenance', 'PLM': 'mrp_plm', 'Rental': 'sale_renting', 'Subscriptions': 'sale_subscription', 'Fleet': 'fleet',
+    'eLearning': 'website_slides', 'Blog': 'website_blog', 'Forum': 'website_forum', 'Studio': 'web_studio', 'IoT': 'iot', 'ESG': 'esg', 'AI': 'ai_app' };
+
+  /* Eleven campaigns, seven of them Odoo. creative = what is drawn; copy = what goes into each Ads Manager.
+     Workflow items: "Step|Odoo app" (a known app name picks the official icon; other text is shown as a caption).
+     App row items: Odoo app names. */
   var CONCEPTS = [
     {
-      id: 'ai-chatbots', name: 'AI chatbots', url: 'https://technext.asia/solutions/ai-chatbots',
+      group: 'odoo', id: 'one-system', name: 'Odoo: one system', url: 'https://technext.asia/solutions/odoo-erp',
+      creative: {
+        bg: 'modules', pose: 'wow', pose2: 'celebrate', bubble: 'Five spreadsheets?!', bubble2: 'One system. Nice!',
+        kicker: 'Odoo 20 ERP', headline: 'Five spreadsheets?\nMake it *one system*.',
+        sub: 'Sales, inventory, CRM and accounting in one place. Configured, migrated and supported by an Odoo Ready Partner.',
+        cta: 'Book a discovery call', prop: 'apps', badge: true,
+        items: ['Sales', 'CRM', 'Inventory', 'Purchase', 'Accounting', 'Point of Sale']
+      },
+      copy: {
+        meta: { primary: 'Sales in one sheet, stock in another, invoices somewhere else? Odoo 20 puts it all in one system, set up by an Odoo Partner.', headline: 'One system instead of five sheets', desc: 'Odoo 20, by TechNext', cta: 'Book now' },
+        linkedin: { intro: 'When sales, stock and accounting live in separate sheets, every report is a project. TechNext implements Odoo 20 end to end as an Odoo Ready Partner.', headline: 'Odoo 20 ERP: sales, inventory, CRM and accounting in one place', cta: 'Request demo' },
+        tiktok: { text: 'Five spreadsheets for one business? Make it one system with Odoo 20.', cta: 'Book now' },
+        x: { text: 'Sales in one sheet, stock in another, invoices somewhere else. Odoo 20 puts them in one system, and TechNext, an Odoo Ready Partner, sets it up.', headline: 'Odoo 20 ERP implementation in Singapore' },
+        youtube: { headline: 'Five spreadsheets? Make it one', long: 'Sales, inventory, CRM and accounting in one system with Odoo 20.', desc: 'Configured, migrated, trained and supported by TechNext, an Odoo Ready Partner.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'discovery', name: 'Odoo discovery call', url: 'https://technext.asia/odoo/discovery',
+      creative: {
+        bg: 'daylight', pose: 'point-left', pose2: 'hello', bubble: "Let's map it out!", bubble2: 'Book a call with us!',
+        kicker: 'Odoo discovery', headline: 'Your business is growing. Your systems should *keep up*.',
+        sub: 'We map how orders, stock and money move today, match each step to an Odoo app and hand you a written scope.',
+        cta: 'Book a discovery call', prop: 'flow', badge: true,
+        items: ['Discovery|Process map', 'Training|Your team', 'Integration|Data and apps', 'Support|After go-live']
+      },
+      copy: {
+        meta: { primary: 'Before any software: we map how orders, stock and money move in your business, then hand you a written Odoo scope.', headline: 'Book an Odoo discovery call', desc: 'Odoo Ready Partner', cta: 'Book now' },
+        linkedin: { intro: 'Growing past spreadsheets? TechNext maps how orders, stock and money move today and matches each step to an Odoo app, with a written scope.', headline: 'Odoo discovery: a written scope before any software', cta: 'Request demo' },
+        tiktok: { text: 'Your business is growing. Your systems should keep up. Book an Odoo discovery call.', cta: 'Book now' },
+        x: { text: 'Your business is growing. Your systems should keep up. We map how orders, stock and money move today and hand you a written Odoo scope.', headline: 'Odoo consultation and discovery' },
+        youtube: { headline: 'Odoo discovery, done properly', long: 'We map your process, match each step to an Odoo app and hand you a written scope.', desc: 'TechNext is an Odoo Ready Partner in Singapore, with teams in the Philippines and Vietnam.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'order-to-cash', name: 'Odoo order-to-cash', url: 'https://technext.asia/solutions/odoo-erp',
+      creative: {
+        bg: 'horizon', pose: 'point-left', pose2: 'celebrate', bubble: 'Zero retyping!', bubble2: 'Paid. Done!',
+        kicker: 'Odoo order-to-cash', headline: 'From quote to *cash*, in one flow.',
+        sub: 'Quotation, delivery, invoice and payment share one Odoo record, so nothing is typed twice.',
+        cta: 'Book a discovery call', prop: 'flow', badge: true,
+        items: ['Quote|Sales', 'Order|Sales', 'Deliver|Inventory', 'Invoice|Invoicing', 'Paid|Accounting']
+      },
+      copy: {
+        meta: { primary: 'Quote, order, delivery, invoice and payment on one Odoo record. Your team stops retyping, and cash lands in the books.', headline: 'From quote to cash in one flow', desc: 'Odoo 20, by TechNext', cta: 'Book now' },
+        linkedin: { intro: 'Every retyped order costs time. In Odoo 20, quotation, delivery, invoice and payment share one record. TechNext configures every hand-off.', headline: 'Odoo order-to-cash: one record from quote to cash', cta: 'Request demo' },
+        tiktok: { text: 'Quote, order, deliver, invoice, paid. One Odoo flow, nothing typed twice.', cta: 'Book now' },
+        x: { text: 'Quote, order, deliver, invoice, paid: one Odoo record from start to finish. TechNext, an Odoo Ready Partner, configures every hand-off.', headline: 'Odoo order-to-cash, set up by TechNext' },
+        youtube: { headline: 'From quote to cash in one flow', long: 'Quotation, delivery, invoice and payment on one Odoo record, nothing typed twice.', desc: 'TechNext configures every Odoo hand-off, from sales to the warehouse to finance.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'procure-to-pay', name: 'Odoo procure-to-pay', url: 'https://technext.asia/odoo/apps/purchase',
+      creative: {
+        bg: 'modules', pose: 'present', pose2: 'clap', bubble: 'No more rekeying!', bubble2: 'Bill matched!',
+        kicker: 'Odoo procure-to-pay', headline: 'Buy, receive and pay *without retyping*.',
+        sub: 'Purchase orders, receipts and vendor bills hand off inside Odoo, and a reorder rule can raise the PO for you.',
+        cta: 'Book a discovery call', prop: 'flow', badge: true,
+        items: ['Request|Purchase', 'PO|Purchase', 'Receive|Inventory', 'Bill|Accounting', 'Pay|Accounting']
+      },
+      copy: {
+        meta: { primary: 'Purchase orders, receipts and vendor bills that hand off inside Odoo. A reorder rule can even raise the PO for you.', headline: 'Buy, receive and pay in one flow', desc: 'Odoo Purchase, by TechNext', cta: 'Book now' },
+        linkedin: { intro: 'Stop rekeying supplier paperwork. In Odoo, the PO, the goods receipt and the vendor bill are one chain, and reorder rules can raise POs.', headline: 'Odoo procure-to-pay: PO, receipt and bill in one chain', cta: 'Request demo' },
+        tiktok: { text: 'Request, PO, receive, bill, pay. Odoo runs the whole purchase chain.', cta: 'Book now' },
+        x: { text: 'Request, PO, receive, bill, pay. In Odoo the purchase chain hands off by itself, and a reorder rule can raise the PO. Set up by TechNext.', headline: 'Odoo procure-to-pay in Singapore' },
+        youtube: { headline: 'Buy, receive and pay in one flow', long: 'Purchase orders, receipts and vendor bills hand off inside Odoo, no retyping.', desc: 'TechNext sets up Odoo Purchase, Inventory and Accounting as one chain.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'make-to-order', name: 'Odoo make to order', url: 'https://technext.asia/odoo/apps/manufacturing',
+      creative: {
+        bg: 'horizon', pose: 'think', pose2: 'celebrate', bubble: 'Built to order?', bubble2: 'Shipped and invoiced!',
+        kicker: 'Odoo manufacturing', headline: 'Make to order, *without the spreadsheet*.',
+        sub: 'A confirmed sales order can create the manufacturing order, then quality checks, delivery and the invoice follow.',
+        cta: 'Book a discovery call', prop: 'flow', badge: true,
+        items: ['Order|Sales', 'Build|Manufacturing', 'Check|Quality', 'Ship|Inventory', 'Invoice|Invoicing']
+      },
+      copy: {
+        meta: { primary: 'A confirmed order can create the manufacturing order in Odoo, then quality checks, delivery and the invoice follow.', headline: 'Make to order, minus the spreadsheet', desc: 'Odoo Manufacturing', cta: 'Book now' },
+        linkedin: { intro: 'Let the sales order drive production. Odoo creates the manufacturing order, runs quality checks and hands over to delivery and invoicing.', headline: 'Odoo Manufacturing: from sales order to shipped and invoiced', cta: 'Request demo' },
+        tiktok: { text: 'Order in, work order out. Odoo builds, checks, ships and invoices.', cta: 'Book now' },
+        x: { text: 'A confirmed sales order can create the manufacturing order in Odoo. Quality checks, delivery and the invoice follow. TechNext sets it up.', headline: 'Odoo Manufacturing, make to order' },
+        youtube: { headline: 'Make to order, minus the spreadsheet', long: 'A sales order creates the manufacturing order, then quality, delivery and invoice follow.', desc: 'Odoo Manufacturing, Quality and Inventory, configured by TechNext.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'month-end', name: 'Odoo month-end close', url: 'https://technext.asia/odoo/apps/accounting',
+      creative: {
+        bg: 'daylight', pose: 'shrug', pose2: 'celebrate', bubble: 'Month-end again?', bubble2: 'Closed. Report ready!',
+        kicker: 'Odoo Accounting', headline: 'Close the month *without* the export marathon.',
+        sub: 'Bank lines matched by rules, journals and tax in Odoo Accounting, and reports straight from the books.',
+        cta: 'Book a discovery call', prop: 'flow', badge: true,
+        items: ['Journal|Accounting', 'Reconcile|Accounting', 'Close|Accounting', 'Report|Spreadsheet']
+      },
+      copy: {
+        meta: { primary: 'Month-end rebuilt from exports? In Odoo Accounting, bank lines match by rules and reports come straight from the books.', headline: 'Close the month without exports', desc: 'Odoo Accounting, by TechNext', cta: 'Book now' },
+        linkedin: { intro: 'Finance teams: stop rebuilding month-end from exports. Odoo Accounting matches bank lines by rules and reports straight from the books.', headline: 'Odoo Accounting: journals, reconciliation, close and reports', cta: 'Request demo' },
+        tiktok: { text: 'Month-end without the export marathon. Odoo matches, closes and reports.', cta: 'Book now' },
+        x: { text: 'Month-end without the export marathon: Odoo Accounting matches bank lines by rules, closes the books and reports from one database.', headline: 'Odoo Accounting in Singapore' },
+        youtube: { headline: 'Close the month without exports', long: 'Bank lines matched by rules, journals and tax in Odoo, reports straight from the books.', desc: 'Accounting is our first Odoo focus area. TechNext, Odoo Ready Partner, Singapore.', cta: 'Book now' }
+      }
+    },
+    {
+      group: 'odoo', id: 'odoo-apps', name: 'Odoo 20 apps', url: 'https://technext.asia/odoo/apps',
+      creative: {
+        bg: 'daylight', pose: 'present', pose2: 'celebrate', bubble: 'Pick your apps!', bubble2: 'All on one database!',
+        kicker: 'Odoo 20 apps', headline: 'Start with the apps you need. *Add more* as you grow.',
+        sub: 'Accounting, Sales and Inventory first, then CRM, Purchase, Manufacturing, Point of Sale and more, on one database.',
+        cta: 'See the apps', prop: 'apps', badge: true,
+        items: ['Accounting', 'Sales', 'Inventory', 'CRM', 'Purchase', 'Manufacturing', 'Point of Sale', 'eCommerce']
+      },
+      copy: {
+        meta: { primary: 'Start with Accounting, Sales and Inventory, then add CRM, Purchase, Manufacturing or Point of Sale on the same Odoo database.', headline: 'The Odoo apps you need, on one database', desc: 'Odoo 20, by TechNext', cta: 'Learn more' },
+        linkedin: { intro: 'Odoo 20 grows with you: start with Accounting, Sales and Inventory, then add CRM, Purchase, Manufacturing and more, all on one database.', headline: 'Odoo 20 apps, implemented by an Odoo Ready Partner', cta: 'Learn more' },
+        tiktok: { text: 'Pick the Odoo apps you need today. Add more as you grow.', cta: 'Learn more' },
+        x: { text: 'Start with the Odoo apps you need and add more as you grow: Accounting, Sales, Inventory, CRM, Purchase, Manufacturing, Point of Sale, one database.', headline: 'Odoo 20 apps with TechNext' },
+        youtube: { headline: 'Start with the apps you need', long: 'Accounting, Sales and Inventory first, then CRM, Purchase, Manufacturing and more.', desc: 'Odoo 20 on one database, implemented by TechNext, an Odoo Ready Partner.', cta: 'Learn more' }
+      }
+    },
+    {
+      group: 'ai', id: 'ai-chatbots', name: 'AI chatbots', url: 'https://technext.asia/solutions/ai-chatbots',
       creative: {
         bg: 'daylight', pose: 'hello', pose2: 'present', bubble: "Hi! I'm Nexi.", bubble2: 'Ask me anything!',
         kicker: 'AI chatbots & assistants', headline: 'Let AI answer your customers *any hour*.',
@@ -43,41 +178,7 @@ window.ADS = (function () {
       }
     },
     {
-      id: 'one-system', name: 'Odoo: one system', url: 'https://technext.asia/solutions/odoo-erp',
-      creative: {
-        bg: 'modules', pose: 'wow', pose2: 'celebrate', bubble: 'Five spreadsheets?!', bubble2: 'One system. Nice!',
-        kicker: 'Odoo 20 ERP', headline: 'Five spreadsheets?\nMake it *one system*.',
-        sub: 'Sales, inventory, CRM and accounting in one place. Configured, migrated and supported by an Odoo Ready Partner.',
-        cta: 'Book a discovery call', prop: 'sheets', badge: true,
-        items: ['sales_FINAL_v3.xlsx', 'stock_count (2).xlsx', 'Odoo 20: one system']
-      },
-      copy: {
-        meta: { primary: 'Sales in one sheet, stock in another, invoices somewhere else? Odoo 20 puts it all in one system, set up by an Odoo Partner.', headline: 'One system instead of five sheets', desc: 'Odoo 20, by TechNext', cta: 'Book now' },
-        linkedin: { intro: 'When sales, stock and accounting live in separate sheets, every report is a project. TechNext implements Odoo 20 end to end as an Odoo Ready Partner.', headline: 'Odoo 20 ERP: sales, inventory, CRM and accounting in one place', cta: 'Request demo' },
-        tiktok: { text: 'Five spreadsheets for one business? Make it one system with Odoo 20.', cta: 'Book now' },
-        x: { text: 'Sales in one sheet, stock in another, invoices somewhere else. Odoo 20 puts them in one system, and TechNext, an Odoo Ready Partner, sets it up.', headline: 'Odoo 20 ERP implementation in Singapore' },
-        youtube: { headline: 'Five spreadsheets? Make it one', long: 'Sales, inventory, CRM and accounting in one system with Odoo 20.', desc: 'Configured, migrated, trained and supported by TechNext, an Odoo Ready Partner.', cta: 'Book now' }
-      }
-    },
-    {
-      id: 'discovery', name: 'Odoo discovery call', url: 'https://technext.asia/odoo/discovery',
-      creative: {
-        bg: 'daylight', pose: 'point-left', pose2: 'hello', bubble: "Let's map it out!", bubble2: 'Book a call with us!',
-        kicker: 'Odoo discovery', headline: 'Your business is growing. Your systems should *keep up*.',
-        sub: 'We map how orders, stock and money move today, match each step to an Odoo app and hand you a written scope.',
-        cta: 'Book a discovery call', prop: 'apps', badge: true,
-        items: ['Sales', 'Inventory', 'Accounting', 'CRM']
-      },
-      copy: {
-        meta: { primary: 'Before any software: we map how orders, stock and money move in your business, then hand you a written Odoo scope.', headline: 'Book an Odoo discovery call', desc: 'Odoo Ready Partner', cta: 'Book now' },
-        linkedin: { intro: 'Growing past spreadsheets? TechNext maps how orders, stock and money move today and matches each step to an Odoo app, with a written scope.', headline: 'Odoo discovery: a written scope before any software', cta: 'Request demo' },
-        tiktok: { text: 'Your business is growing. Your systems should keep up. Book an Odoo discovery call.', cta: 'Book now' },
-        x: { text: 'Your business is growing. Your systems should keep up. We map how orders, stock and money move today and hand you a written Odoo scope.', headline: 'Odoo consultation and discovery' },
-        youtube: { headline: 'Odoo discovery, done properly', long: 'We map your process, match each step to an Odoo app and hand you a written scope.', desc: 'TechNext is an Odoo Ready Partner in Singapore, with teams in the Philippines and Vietnam.', cta: 'Book now' }
-      }
-    },
-    {
-      id: 'automation', name: 'AI automation', url: 'https://technext.asia/solutions/ai-automation',
+      group: 'ai', id: 'automation', name: 'AI automation', url: 'https://technext.asia/solutions/ai-automation',
       creative: {
         bg: 'midnight', pose: 'think', pose2: 'celebrate', bubble: 'Still copy-pasting?', bubble2: 'Done for you!',
         kicker: 'AI automation', headline: 'Stop losing revenue to *manual work*.',
@@ -94,24 +195,7 @@ window.ADS = (function () {
       }
     },
     {
-      id: 'why-technext', name: 'Why TechNext', url: 'https://technext.asia/company',
-      creative: {
-        bg: 'horizon', pose: 'celebrate', pose2: 'clap', bubble: 'Hello from Singapore!', bubble2: 'Nice to meet you!',
-        kicker: 'Why TechNext', headline: '11+ enterprise clients. 10+ countries. *One team.*',
-        sub: 'Odoo ERP and enterprise AI from Singapore, with hubs in Metro Manila and Ho Chi Minh City.',
-        cta: 'Meet the team', prop: 'stats', badge: false,
-        items: ['10+|countries', '11+|enterprise clients', '3|offices', '4|AI disciplines']
-      },
-      copy: {
-        meta: { primary: 'Odoo ERP and enterprise AI from one team: HQ in Singapore, hubs in Manila and Ho Chi Minh City, clients in 10+ countries.', headline: '11+ enterprise clients, 10+ countries', desc: 'TechNext, Singapore', cta: 'Learn more' },
-        linkedin: { intro: 'TechNext has transformed 11+ enterprise clients across 10+ countries with Odoo ERP and enterprise AI, from Singapore, Manila and Ho Chi Minh City.', headline: 'One team for Odoo ERP and enterprise AI', cta: 'Learn more' },
-        tiktok: { text: 'One team for Odoo ERP and AI, from Singapore, Manila and Ho Chi Minh City.', cta: 'Learn more' },
-        x: { text: '11+ enterprise clients. 10+ countries. One team for Odoo ERP and enterprise AI, from Singapore, Metro Manila and Ho Chi Minh City.', headline: 'Meet TechNext' },
-        youtube: { headline: 'One team for Odoo ERP and AI', long: '11+ enterprise clients in 10+ countries, from Singapore, Manila and Ho Chi Minh City.', desc: 'TechNext: Odoo Ready Partner and enterprise AI consultancy, headquartered in Singapore.', cta: 'Learn more' }
-      }
-    },
-    {
-      id: 'websites', name: 'Websites + AI', url: 'https://technext.asia/solutions/website',
+      group: 'ai', id: 'websites', name: 'Websites + AI', url: 'https://technext.asia/solutions/website',
       creative: {
         bg: 'modules', pose: 'present', pose2: 'love', bubble: 'Ta-da! Your new site.', bubble2: 'Built to bring leads!',
         kicker: 'Websites + AI', headline: 'A website that *answers back*.',
@@ -125,6 +209,23 @@ window.ADS = (function () {
         tiktok: { text: 'Your website could answer customers while you sleep. We build it.', cta: 'Get quote' },
         x: { text: 'A website that answers back: fast, clear pages, forms that reach your team, and an AI assistant for your visitors. Built by TechNext.', headline: 'Web design and development in Singapore' },
         youtube: { headline: 'A website that answers back', long: 'Fast, clear company websites and online stores, with an AI assistant for your visitors.', desc: 'Designed, built and handed over by TechNext, with forms that reach your team.', cta: 'Get quote' }
+      }
+    },
+    {
+      group: 'ai', id: 'why-technext', name: 'Why TechNext', url: 'https://technext.asia/company',
+      creative: {
+        bg: 'horizon', pose: 'celebrate', pose2: 'clap', bubble: 'Hello from Singapore!', bubble2: 'Nice to meet you!',
+        kicker: 'Why TechNext', headline: '11+ enterprise clients. 10+ countries. *One team.*',
+        sub: 'Odoo ERP and enterprise AI from Singapore, with hubs in Metro Manila and Ho Chi Minh City.',
+        cta: 'Meet the team', prop: 'stats', badge: false,
+        items: ['10+|countries', '11+|enterprise clients', '3|offices', '4|AI disciplines']
+      },
+      copy: {
+        meta: { primary: 'Odoo ERP and enterprise AI from one team: HQ in Singapore, hubs in Manila and Ho Chi Minh City, clients in 10+ countries.', headline: '11+ enterprise clients, 10+ countries', desc: 'TechNext, Singapore', cta: 'Learn more' },
+        linkedin: { intro: 'TechNext has transformed 11+ enterprise clients across 10+ countries with Odoo ERP and enterprise AI, from Singapore, Manila and Ho Chi Minh City.', headline: 'One team for Odoo ERP and enterprise AI', cta: 'Learn more' },
+        tiktok: { text: 'One team for Odoo ERP and AI, from Singapore, Manila and Ho Chi Minh City.', cta: 'Learn more' },
+        x: { text: '11+ enterprise clients. 10+ countries. One team for Odoo ERP and enterprise AI, from Singapore, Metro Manila and Ho Chi Minh City.', headline: 'Meet TechNext' },
+        youtube: { headline: 'One team for Odoo ERP and AI', long: '11+ enterprise clients in 10+ countries, from Singapore, Manila and Ho Chi Minh City.', desc: 'TechNext: Odoo Ready Partner and enterprise AI consultancy, headquartered in Singapore.', cta: 'Learn more' }
       }
     }
   ];
@@ -181,6 +282,6 @@ window.ADS = (function () {
     ['YouTube in-stream / Shorts', '1920 &times; 1080 (16:9) / 1080 &times; 1920', 'Upload the video to YouTube first; skippable ads can be skipped after 5 s, so show brand and offer early', 'Headline 40, long headline 90, description 90', 'In-stream: CTA bottom left, skip button bottom right']
   ];
 
-  return { POSES: POSES, POSE_NAMES: POSE_NAMES, BACKGROUNDS: BACKGROUNDS, PROPS: PROPS, CONCEPTS: CONCEPTS, PLATFORMS: PLATFORMS,
+  return { POSES: POSES, POSE_NAMES: POSE_NAMES, BACKGROUNDS: BACKGROUNDS, PROPS: PROPS, ODOO_APPS: ODOO_APPS, CONCEPTS: CONCEPTS, PLATFORMS: PLATFORMS,
     FIELDS: FIELDS, GROUP_NAMES: GROUP_NAMES, SPECS: SPECS };
 })();
