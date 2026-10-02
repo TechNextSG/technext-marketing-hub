@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>TechNext Marketing Hub</title>
+<meta name="description" content="Every TechNext marketing tool in one place: presentations, Drip Studio, business cards, the website and the brand guide.">
+<link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/hub.css?v=1">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo/technext-wide-blue.png" alt="TechNext" width="150" height="30"><b>Marketing Hub</b></a>
+    <nav class="nav" aria-label="Hub">
+      <a href="index.html" aria-current="page">Tools</a>
+      <a href="branding.html">Brand guide</a>
+      <a class="cta" href="https://technext.asia" target="_blank" rel="noopener">technext.asia</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="kicker"><i></i>Marketing team &middot; internal</span>
+    <h1>Every marketing tool, <em>one page.</em></h1>
+    <p>The five things the marketing team opens most, with the links that matter for each. Bookmark this page and stop hunting through Drive, GitHub and chat history.</p>
+    <label class="search" for="q">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search tools: decks, drips, logo, cards, website&hellip;" autocomplete="off">
+      <kbd>/</kbd>
+    </label>
+    <div class="chips" role="group" aria-label="Filter by purpose">
+      <button class="chip" data-cat="sell" aria-pressed="false">Selling</button>
+      <button class="chip" data-cat="social" aria-pressed="false">Social media</button>
+      <button class="chip" data-cat="brand" aria-pressed="false">Brand &amp; identity</button>
+      <button class="chip" data-cat="web" aria-pressed="false">Website</button>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">1</span><h2>Marketing tools</h2><p>Open the app, or jump straight to a sub-page.</p><span class="count" id="count"></span></div>
+    <div class="grid" id="apps"></div>
+    <div class="empty" id="empty">Nothing matches. Try &ldquo;deck&rdquo;, &ldquo;logo&rdquo; or &ldquo;drip&rdquo;.</div>
+  </div>
+</section>
+
+<section id="more">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">2</span><h2>Also handy</h2><p>Staff self-serve assets and the master workbook.</p></div>
+    <div class="rows">
+      <a class="row rv" data-tags="email signature gmail odoo branding misc" href="https://technextsg.github.io/technext-branding-miscellaneous/" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <span><b>Email signature generator</b><span>Fill in your name and title, copy for Gmail or Odoo. Logo loads from the hosted page.</span></span>
+      </a>
+      <a class="row rv" data-tags="video call background zoom teams meet branding misc" href="https://technextsg.github.io/technext-branding-miscellaneous/#backgrounds" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span>
+        <span><b>Video-call backgrounds &amp; animated logo</b><span>Four HD backgrounds in normal and mirrored versions, plus the logo GIF.</span></span>
+      </a>
+      <a class="row rv" data-tags="marketing main workbook spreadsheet live url repos links" href="https://docs.google.com/spreadsheets/d/1vVF2N2sngBPwjv43JXxEaNzBg1NnnqGH/edit" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></span>
+        <span><b>Marketing_Main workbook</b><span>Master sheet: every GitHub repo, live URL and marketing link, by company.</span></span>
+      </a>
+      <a class="row rv" data-tags="drips drive folder sales png exports industry" href="https://drive.google.com/drive/folders/14NUVtiu5_Zp36k2rjZcyg-ptkOPfayK_" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span>
+        <span><b>Drive: SALES / 01_Drips</b><span>Finished drip images by industry, ready to post. Export from Drip Studio lands here.</span></span>
+      </a>
+      <a class="row rv" data-tags="github technextsg org repos code" href="https://github.com/TechNextSG" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/></svg></span>
+        <span><b>GitHub: TechNextSG</b><span>Website, presentations, branding and client sites. Sister account: technextmarketing.</span></span>
+      </a>
+      <a class="row rv" data-tags="presentations pdf download decks" href="https://technextsg.github.io/technext-presentations/pdf/" target="_blank" rel="noopener">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l6 6v14H6z"/><path d="M14 2v6h6M9 14h6M9 18h6"/></svg></span>
+        <span><b>Deck PDFs</b><span>Printable copies of every presentation, every slide in its finished state.</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>TechNext Pte. Ltd. &middot; Marketing Hub &middot; internal use</span>
+    <a href="branding.html">Brand guide</a>
+    <a href="https://github.com/TechNextSG/technext-marketing-hub" target="_blank" rel="noopener">Edit this page</a>
+    <span class="right">Updated 2 Oct 2026</span>
+  </div>
+</footer>
+
+<script>
+/* One edit point: add a tool here and the card appears. The first link is the primary button.
+   badges: k = live | unlisted | login. cat = sell | social | brand | web (filter chips). */
+window.APPS=[
+  {
+    name:'TechNext Presentations',
+    cat:'sell',
+    img:'assets/img/presentations.jpg',
+    badges:[{k:'unlisted',t:'Unlisted'}],
+    desc:'Eight interactive HTML decks in TechNext branding: company profile, portfolio, service showcase, marketing showcase, What is Odoo (with Odoo 20), ERP and marketing tier lists, and the Hitachi Elevator PH proposal.',
+    use:'Sales calls, client pitches, onboarding. Press <b>&rarr;</b> to present, <b>O</b> for all slides, <b>F</b> for full screen. Every deck has a PDF and a Share link.',
+    tags:['decks','slides','powerpoint','pitch','proposal','odoo 20','tier list','portfolio','hitachi'],
+    links:[
+      {label:'Open launcher',href:'https://technextsg.github.io/technext-presentations/'},
+      {label:'Company profile',href:'https://technextsg.github.io/technext-presentations/company-profile.html'},
+      {label:'What is Odoo?',href:'https://technextsg.github.io/technext-presentations/what-is-odoo.html'},
+      {label:'PDFs',href:'https://technextsg.github.io/technext-presentations/pdf/',icon:'down'}
+    ]
+  },
+  {
+    name:'Drip Studio',
+    cat:'social',
+    img:'assets/img/drip-studio.jpg',
+    badges:[{k:'login',t:'Claude login'}],
+    desc:'On-brand social &ldquo;drip&rdquo; image builder. Pick a category and industry, let Claude draft 3, 6 or 9 posts (headline, subline, caption, hashtags), keep the good ones, export PNGs at 1080 to 3240 px.',
+    use:'LinkedIn, Facebook and Instagram posts about Odoo, AI and our services. The Claude hub saves drafts for the whole team; the GitHub mirror works without login but saves only in your browser.',
+    tags:['social media','posts','images','linkedin','facebook','instagram','odoo','ai','canva','drips'],
+    links:[
+      {label:'Open Drip Studio',href:'https://claude.ai/artifact/F2LKF69gAzjvQx6nkWFeKM',title:'Claude hub: shared drafts, needs a claude.ai login'},
+      {label:'Mirror (no login)',href:'https://technextmarketing.github.io/technext-drip-studio/'},
+      {label:'Drive: 01_Drips',href:'https://drive.google.com/drive/folders/14NUVtiu5_Zp36k2rjZcyg-ptkOPfayK_'}
+    ]
+  },
+  {
+    name:'Business Card Generator',
+    cat:'brand',
+    img:'assets/img/business-cards.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'Print-ready TechNext business cards. Pick a person or add one, preview front (contact side with vCard QR) and back (blue brand side), then download PNG at 600 or 1200 dpi or a PDF, with optional bleed.',
+    use:'New hires, reprints, events. Vector logos, so the print is sharp. People you add are saved in your own browser only.',
+    tags:['business cards','print','qr','vcard','name card','staff'],
+    links:[
+      {label:'Open generator',href:'https://technextsg.github.io/technext-branding-miscellaneous/business-cards/'},
+      {label:'Email signature',href:'https://technextsg.github.io/technext-branding-miscellaneous/'}
+    ]
+  },
+  {
+    name:'TechNext Website',
+    cat:'web',
+    img:'assets/img/website.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'technext.asia, the public site. Odoo 20 and AI services, 50 Odoo app pages, industries, the Nexi hero and live demos. Every booking runs through the Odoo calendar modal.',
+    use:'Send prospects here. The /lp/ page is the ads landing page; the blog and careers pages are linked in the footer. Changes deploy from GitHub to Vercel in about a minute.',
+    tags:['website','technext.asia','landing page','ads','seo','blog','careers','odoo apps','vercel'],
+    links:[
+      {label:'Open technext.asia',href:'https://technext.asia/'},
+      {label:'Ads landing /lp/',href:'https://technext.asia/lp/'},
+      {label:'Blog',href:'https://technext.asia/blog'},
+      {label:'GitHub repo',href:'https://github.com/TechNextSG/TechNext-Website'}
+    ]
+  },
+  {
+    name:'TechNext Brand Guide',
+    cat:'brand',
+    img:'assets/img/branding.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'The brand on one page: logo downloads (PNG and vector SVG), the one blue and its tints, the two typefaces, the tagline and boilerplate, approved figures and claims, legal entity details and document templates.',
+    use:'Before you make anything with the logo or a company claim in it. Click any colour to copy its hex, any boilerplate to copy the text.',
+    tags:['branding','logo','colours','fonts','typography','tagline','boilerplate','claims','uen','templates','letterhead','guide'],
+    links:[
+      {label:'Open brand guide',href:'branding.html'},
+      {label:'Logos',href:'branding.html#logo'},
+      {label:'Colours',href:'branding.html#colour'},
+      {label:'Claims',href:'branding.html#words'}
+    ]
+  }
+];
+</script>
+<script src="assets/hub.js?v=1"></script>
+</body>
+</html>
