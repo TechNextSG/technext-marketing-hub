@@ -124,13 +124,13 @@ section{padding:clamp(22px,3vw,36px) 0;scroll-margin-top:124px}
 .logo .meta small{font-size:12px;color:var(--ink-3);width:100%}
 .logo .meta .btn{padding:7px 10px;font-size:12.5px}
 .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:12px}
-.sw{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;cursor:pointer;background:#fff;text-align:left;padding:0;transition:all .25s var(--ease)}
+.sw{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;cursor:pointer;background:#fff;text-align:left;padding:0;transition:all .25s var(--ease)}
 .sw:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
 .sw .c{display:block;height:74px;position:relative}
 .sw .c::after{content:"copy";position:absolute;right:8px;top:8px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.9);color:var(--ink-2);padding:3px 6px;border-radius:6px;opacity:0;transition:opacity .2s}
 .sw:hover .c::after{opacity:1}
 .sw.copied .c::after{content:"copied";opacity:1;background:var(--ok);color:#fff}
-.sw .t{display:block;padding:10px 12px}
+.sw .t{display:block;padding:10px 12px;flex:1}
 .sw .t b{display:block;font-size:13.5px;font-weight:600}
 .sw .t code{font-size:12.5px;color:var(--ink-3)}
 .sw .t small{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
