@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Nexi Studio</title>
+<meta name="description" content="Nexi Studio: map, test and teach Nexi's answers, and design Nexi animations and videos for technext.asia/nexi.">
+<link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/hub.css?v=4">
+<link rel="stylesheet" href="assets/nexi/studio.css?v=1">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo/technext-wide-blue.png" alt="TechNext" width="150" height="30"><b>Marketing Hub</b></a>
+    <nav class="nav" aria-label="Hub">
+      <a href="index.html">Tools</a>
+      <a href="branding.html">Brand guide</a>
+      <a href="nexi-studio.html" aria-current="page">Nexi Studio</a>
+      <a class="cta" href="https://technext.asia/nexi#full" target="_blank" rel="noopener">Open Nexi</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="subnav" aria-label="Sections">
+  <div class="wrap">
+    <a href="#live">Live Nexi</a>
+    <a href="#flow">Conversation map</a>
+    <a href="#brain">Brain</a>
+    <a href="#bench">Test bench</a>
+    <a href="#learn">Learnings</a>
+    <a href="#anim">Animation &amp; video</a>
+    <a href="#persona">Persona &amp; voice</a>
+  </div>
+</nav>
+
+<section class="hero nx" id="live">
+  <div class="wrap">
+    <span class="kicker"><i></i>Nexi Studio &middot; internal</span>
+    <h1>Design, teach and animate <em>Nexi.</em></h1>
+    <p>One workspace for everything behind <a href="https://technext.asia/nexi#full" target="_blank" rel="noopener">technext.asia/nexi</a>: how a chat flows, every answer Nexi knows, a test bench that answers exactly like the live robot, a queue of new learnings, and a 3D stage to storyboard and record Nexi animations and videos.</p>
+    <div class="acts">
+      <a class="btn p" href="https://technext.asia/nexi#full" target="_blank" rel="noopener">Open Nexi full screen</a>
+      <a class="btn" href="https://technext.asia/nexi" target="_blank" rel="noopener">The /nexi page</a>
+      <a class="btn" href="#bench">Test a question</a>
+      <a class="btn" href="#anim">Animate Nexi</a>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shots">
+      <figure><img src="assets/nexi/live-desktop.jpg" alt="Nexi full screen on technext.asia, desktop" width="1440" height="900" loading="lazy"><figcaption>Desktop: technext.asia/nexi#full</figcaption></figure>
+      <figure><img src="assets/nexi/live-phone.jpg" alt="Nexi full screen on a phone" width="390" height="844" loading="lazy"><figcaption>Phone, 390 px</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="flow">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">1</span><h2>Conversation map</h2><p>How every chat on /nexi#full runs, read from the live code.</p></div>
+    <div class="flow">
+      <div class="st"><b>Greeting</b><span id="greet"></span></div>
+      <div class="st"><b>Starter chips</b>Three questions plus three mini tours (3D): <span id="starts"></span></div>
+      <div class="st"><b>Visitor asks</b>Taps a chip or types anything. Typos, plurals and sound-alikes still match.</div>
+      <div class="st"><b>Matcher</b>Scores every tour and topic by keywords, then searches the site's page index.</div>
+      <div class="st"><b>Answer</b>Cute opener + answer + buttons, a reaction, a camera shot and a related mini tour.</div>
+      <div class="st goal"><b>Goal</b>Three follow-up chips; the last one is always a goal: book a call, get a quote or talk.</div>
+    </div>
+    <ul class="rules">
+      <li><code class="code">tour &ge; 1.1</code><span>A mini tour wins when its score is at least 1.1 and at least as high as the best topic.</span></li>
+      <li><code class="code">topic &ge; 1.1</code><span>Otherwise the best topic answers when it scores 1.1 or more.</span></li>
+      <li><code class="code">site page</code><span>Otherwise Nexi links up to 3 site pages that match (&ldquo;Let me look that up!&rdquo;).</span></li>
+      <li><code class="code">weak &ge; 0.7</code><span>A weak topic or tour match (0.7+) still answers.</span></li>
+      <li><code class="code">fallback</code><span>&ldquo;Hmm, I don't have an answer for that one yet&rdquo; + WhatsApp and email. Every fallback is a learning to add.</span></li>
+    </ul>
+    <h3 style="font-size:17px;margin:26px 0 4px">Follow-up chains</h3>
+    <p class="lead" style="margin-bottom:0">After each answer Nexi offers three next questions. Click a chip to jump to that topic's card. Blue chips are goals.</p>
+    <div class="chain" id="chain"></div>
+    <h3 style="font-size:17px;margin:26px 0 4px">Health checks</h3>
+    <div class="health" id="health"></div>
+  </div>
+</section>
+
+<section id="brain">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">2</span><h2>Brain</h2><p>Every topic Nexi can answer, with keywords, reaction and follow-ups.</p><span class="count" id="brain-count"></span></div>
+    <div class="tools">
+      <label class="field grow"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="bq" type="search" placeholder="Search answers and keywords&hellip;" autocomplete="off"></label>
+      <label class="sw2"><input type="checkbox" id="apply1" checked> Include learnings</label>
+      <span class="small" id="synced"></span>
+    </div>
+    <div class="topics" id="topics"></div>
+  </div>
+</section>
+
+<section id="bench">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">3</span><h2>Test bench</h2><p>Ask like a visitor. Same matcher, same answers as the live Nexi.</p></div>
+    <div class="bench">
+      <div>
+        <div class="convo" id="convo" aria-live="polite"><p class="hint">Type a question below, or tap a starter. Nexi answers exactly as on technext.asia, and shows why.</p></div>
+        <form class="ask" id="askf">
+          <label class="field"><input id="aq" placeholder="Ask Nexi anything&hellip;" autocomplete="off" aria-label="Question"></label>
+          <button class="btn p" type="submit">Ask</button>
+        </form>
+        <div class="chips2" id="starters" style="margin-top:10px"></div>
+      </div>
+      <div class="card" id="why"><p class="small" style="margin:0">The matcher's reasoning shows here: which rule fired, the score, and the top 5 candidates.</p></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <div class="cov-head">
+        <h3 style="font-size:17px">Coverage run</h3>
+        <span class="small" id="cov-n"></span>
+        <span style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">
+          <label class="sw2"><input type="checkbox" id="apply2" checked> Include learnings</label>
+          <label class="sw2"><input type="checkbox" id="failsonly"> Failures only</label>
+          <button class="btn p" type="button" id="runcov">Run all questions</button>
+        </span>
+      </div>
+      <p class="lead">Real visitor-style questions with the topic each should reach. Run it before and after a learning to see it help, and to make sure nothing else broke.</p>
+      <div class="cov-head" id="cov-sum" hidden><span class="score" id="cov-score"></span><span class="meter"><i id="cov-bar"></i></span><span class="small" id="cov-delta"></span></div>
+      <div class="tbl-wrap" id="cov-wrap" hidden><table><thead><tr><th>Question</th><th>Expected</th><th>Nexi gave</th><th>Score</th><th></th></tr></thead><tbody id="cov-body"></tbody></table></div>
+    </div>
+  </div>
+</section>
+
+<section id="learn">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">4</span><h2>Learnings</h2><p>New keywords, topics and answers, tested here before they go live.</p><span class="count" id="learn-count"></span></div>
+    <div class="two">
+      <div>
+        <div class="llist" id="llist"></div>
+        <div class="tools" style="margin-top:12px">
+          <button class="btn p" type="button" id="brief">Copy hand-off brief</button>
+          <button class="btn" type="button" id="exp">Download JSON</button>
+          <label class="btn" style="cursor:pointer">Import JSON<input type="file" id="imp" accept=".json,application/json" hidden></label>
+          <button class="btn" type="button" id="reset">Reset to proposals</button>
+        </div>
+        <p class="note" style="margin-top:12px">Learnings live in this browser. To share them, download the JSON or copy the brief, then send it to the web team (or paste it to Claude with &ldquo;apply these Nexi learnings to _src/nexi/app.html&rdquo;). Shipped learnings appear in the Brain after the next sync.</p>
+      </div>
+      <form class="card lform" id="lform">
+        <h3 style="font-size:17px">Teach Nexi</h3>
+        <div class="row2">
+          <label>Type<select id="lt">
+            <option value="kw">Add keywords to a topic</option>
+            <option value="new">New topic</option>
+            <option value="ans">Rewrite an answer</option>
+            <option value="fol">Change follow-ups</option>
+          </select></label>
+          <label id="l-topic">Topic<select id="ltopic"></select></label>
+          <label id="l-id" hidden>New topic id<input id="lid" placeholder="e.g. hr" pattern="[a-z0-9_]+"></label>
+        </div>
+        <label id="l-q">Visitor question that started it<input id="lq" placeholder="e.g. do you do payroll for staff?"></label>
+        <label id="l-kw">Keywords <small>comma separated, lower case, include typos people make</small><input id="lkw" placeholder="payroll, payslip, leave, time off"></label>
+        <label id="l-label" hidden>Chip label <small>how the question reads on a follow-up chip</small><input id="llabel" placeholder="Does Odoo handle HR and payroll?"></label>
+        <label id="l-intro" hidden>Cute opener <small>one short Nexi line</small><input id="lintro" placeholder="People power! Here's the HR side."></label>
+        <label id="l-ans" hidden>Answer <small>HTML allowed: &lt;b&gt;, &lt;br&gt;. Site wording, approved facts only.</small><textarea id="lans"></textarea></label>
+        <div class="row2" id="l-more" hidden>
+          <label>Reaction<select id="lreact"></select></label>
+          <label>Follow-ups <small>3 topic ids, last = goal</small><input id="lfol" placeholder="price, how, schedule"></label>
+        </div>
+        <label id="l-links" hidden>Buttons <small>one per line: page | label, or quote / wa / meet / email / talkform</small><textarea id="llinks" style="min-height:64px" placeholder="odoo/apps#hr | HR apps&#10;quote"></textarea></label>
+        <div class="tools" style="margin:0"><button class="btn p" type="submit">Add learning</button><button class="btn" type="button" id="ltry">Test it now</button><span class="small" id="lmsg"></span></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="anim">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">5</span><h2>Animation &amp; video</h2><p>The real 3D Nexi from technext.asia. Try moves, build a storyboard, record a video.</p></div>
+    <div class="anim">
+      <div class="stagebox">
+        <div class="stagewrap"><canvas id="stage" width="1280" height="720" aria-label="Nexi 3D stage"></canvas></div>
+        <div class="stagebar">
+          <div class="seg" id="ar" role="group" aria-label="Aspect ratio"><button data-ar="16x9" aria-pressed="true">16:9</button><button data-ar="9x16" aria-pressed="false">9:16</button><button data-ar="1x1" aria-pressed="false">1:1</button></div>
+          <div class="seg" id="bg" role="group" aria-label="Background"><button data-bg="studio" aria-pressed="true">Studio</button><button data-bg="white" aria-pressed="false">White</button><button data-bg="blue" aria-pressed="false">Brand blue</button><button data-bg="green" aria-pressed="false">Green screen</button></div>
+          <label class="sw2"><input type="checkbox" id="safe"> Safe area</label>
+        </div>
+        <div class="tl" id="tl" aria-hidden="true"></div>
+      </div>
+      <div class="card">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-tab="moves">Moves</button>
+          <button role="tab" aria-selected="false" data-tab="story">Storyboard</button>
+          <button role="tab" aria-selected="false" data-tab="lib">Library</button>
+        </div>
+        <div class="pane" data-pane="moves">
+          <div class="grp"><h4>Chat reactions <span style="text-transform:none;letter-spacing:0;font-weight:500">(what each topic triggers on /nexi)</span></h4><div class="btns" id="m-react"></div></div>
+          <div class="grp"><h4>Moves</h4><div class="btns" id="m-clip"></div></div>
+          <div class="grp"><h4>Faces</h4><div class="btns" id="m-face"></div></div>
+          <div class="grp"><h4>Position</h4><div class="btns" id="m-pos"></div></div>
+          <div class="grp"><h4>Effects</h4><div class="btns" id="m-fx"></div></div>
+          <div class="grp"><h4>Say something</h4><form class="ask" id="sayf" style="margin:0"><label class="field"><input id="sayq" placeholder="Hi! I'm Nexi." autocomplete="off" aria-label="Speech bubble text"></label><button class="btn" type="submit">Say</button></form></div>
+        </div>
+        <div class="pane" data-pane="story" hidden>
+          <div class="tools">
+            <label class="field" style="flex:1 1 180px"><select id="tpl" aria-label="Template"></select></label>
+            <button class="btn" type="button" id="sb-play">Play</button>
+            <button class="btn rec" type="button" id="sb-rec">Record video</button>
+          </div>
+          <div class="tools" style="margin-top:-4px">
+            <label class="sw2"><input type="checkbox" id="endcard" checked> End card</label>
+            <label class="sw2"><input type="checkbox" id="hq" checked> 1080p</label>
+            <span class="small" id="sb-len"></span>
+          </div>
+          <div class="beats" id="beats"></div>
+          <div class="tools" style="margin-top:10px">
+            <button class="btn" type="button" id="sb-add">+ Beat</button>
+            <button class="btn" type="button" id="sb-script">Copy script</button>
+            <button class="btn" type="button" id="sb-json">Download JSON</button>
+            <label class="btn" style="cursor:pointer">Load JSON<input type="file" id="sb-load" accept=".json" hidden></label>
+          </div>
+          <p class="small" style="margin:10px 0 0">Each beat: seconds, move, face, position, and the line Nexi says. Records a WebM in this browser (Chrome or Edge). For the final MP4 with music, send the JSON to the video pipeline.</p>
+        </div>
+        <div class="pane" data-pane="lib" hidden>
+          <div class="grp"><h4>Finished shorts (Drive: 19. Nexi Cute Animations)</h4><div class="eps" id="eps"></div></div>
+          <div class="grp"><h4>Camera shots on /nexi</h4><table><tbody id="shots"></tbody></table></div>
+          <div class="grp"><h4>Tap reactions on /nexi</h4><p class="small" style="margin:0 0 6px">When a visitor taps Nexi, one of these plays at random:</p><div class="btns" id="taps"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="persona">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">6</span><h2>Persona &amp; voice</h2><p>Write every new Nexi line, answer and video script to this sheet.</p></div>
+    <div class="persona">
+      <div class="card">
+        <h3 style="font-size:17px;margin-bottom:8px">Who Nexi is</h3>
+        <dl class="kv">
+          <dt>Name</dt><dd>Nexi</dd>
+          <dt>Role</dt><dd>TechNext's little helper robot and AI companion on technext.asia</dd>
+          <dt>Personality</dt><dd>Curious, upbeat, a bit cheeky, never pushy. Loves boxes, numbers and meetings.</dd>
+          <dt>Looks</dt><dd>White shell, blue face screen with expressive eyes, hover jet, blush when happy</dd>
+          <dt>Colours</dt><dd><span class="kw" style="background:#3167CA;color:#fff">#3167CA blue</span> <span class="kw" style="background:#FF7EB6;color:#fff">#FF7EB6 blush</span> <span class="kw" style="background:#FFD25E;color:#1F1F3D">#FFD25E star</span> <span class="kw" style="background:#DFE6F3;color:#1F1F3D">#DFE6F3 studio</span></dd>
+          <dt>Job</dt><dd>Answer quickly in TechNext's own words, then move the visitor one step toward a call, a quote or a chat with the team.</dd>
+        </dl>
+        <h3 style="font-size:17px;margin:18px 0 8px">Approved facts Nexi may say</h3>
+        <div class="facts" id="facts"></div>
+      </div>
+      <div class="card">
+        <h3 style="font-size:17px;margin-bottom:8px">How Nexi talks</h3>
+        <div class="dos">
+          <div class="do yes"><i>&#10003;</i><span><b>Cute opener, plain answer.</b> One playful line (&ldquo;Boxes! I love boxes.&rdquo;), then facts in the site's wording.</span></div>
+          <div class="do yes"><i>&#10003;</i><span><b>Short.</b> Answers under about 60 words; bold the product or step.</span></div>
+          <div class="do yes"><i>&#10003;</i><span><b>Always a next step.</b> Every answer ends with a button or chip toward book, quote or talk.</span></div>
+          <div class="do yes"><i>&#10003;</i><span><b>Honest when unsure.</b> Hand off to the team rather than guess.</span></div>
+          <div class="do no"><i>&#10005;</i><span><b>No &ldquo;Certified&rdquo; Odoo partner.</b> TechNext is an Odoo Ready Partner.</span></div>
+          <div class="do no"><i>&#10005;</i><span><b>No prices, dates or promises</b> that are not on technext.asia.</span></div>
+          <div class="do no"><i>&#10005;</i><span><b>No ISO 27001 claim</b>, client names or numbers beyond the approved facts.</span></div>
+          <div class="do no"><i>&#10005;</i><span><b>No dark, heavy scenes.</b> Light studio backgrounds; brand blue as an accent.</span></div>
+        </div>
+        <h3 style="font-size:17px;margin:18px 0 8px">Openers Nexi already uses</h3>
+        <div class="lines" id="openers"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>TechNext Pte. Ltd. &middot; Nexi Studio &middot; internal use</span>
+    <a href="index.html">All tools</a>
+    <a href="https://github.com/TechNextSG/technext-marketing-hub" target="_blank" rel="noopener">Edit this page</a>
+    <span class="right" id="foot-sync">Updated 2 Oct 2026</span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="assets/nexi/brain.js?v=1"></script>
+<script src="assets/nexi/data.js?v=1"></script>
+<script src="assets/nexi/three.min.js"></script>
+<script src="assets/nexi/nexi-core.js?v=1"></script>
+<script src="assets/nexi/studio.js?v=1"></script>
+</body>
+</html>
