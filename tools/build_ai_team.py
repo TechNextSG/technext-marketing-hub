@@ -86,7 +86,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>AI Team &middot; TechNext Marketing Hub</title>
-<meta name="description" content="TechNext's AI marketing employees: Pixel the designer, Razel the lead researcher and AJ the social media planner. What each one does every day, their skills by category, their agentic AI skill levels and what they learn next.">
+<meta name="description" content="TechNext's AI marketing team: Pixel the designer, Razel the lead researcher and Ralph the social media planner, with Pia (General Manager), Joy (HR) and Mika (front desk). What each one does every day, their skills by category, their agentic AI skill levels and what they learn next.">
 <link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
