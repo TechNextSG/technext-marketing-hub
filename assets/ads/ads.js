@@ -395,7 +395,8 @@
     return '<div class="pose"><div class="im"><img src="' + R.poseSrc(p) + '" alt="Nexi, ' + esc(D.POSE_NAMES[p]) + '" loading="lazy" width="' + m.w + '" height="' + m.h + '"></div><b>' + esc(D.POSE_NAMES[p]) + '</b><small>' + m.w + ' &times; ' + m.h + ' PNG</small>'
       + '<a class="btn sm" href="assets/ads/nexi/png/nexi-' + p + '.png" download="nexi-' + p + '.png">Download</a></div>';
   }).join('');
-  $('#spec-rows').innerHTML = D.SPECS.map(function (r) { return '<tr>' + r.map(function (c, i) { return i ? '<td>' + c + '</td>' : '<td><b>' + c + '</b></td>'; }).join('') + '</tr>'; }).join('');
+  var SPEC_H = Array.prototype.map.call(document.querySelectorAll('#specs thead th'), function (th) { return th.textContent.trim(); });
+  $('#spec-rows').innerHTML = D.SPECS.map(function (r) { return '<tr>' + r.map(function (c, i) { var lb = ' data-label="' + (SPEC_H[i] || '').replace(/"/g, '&quot;') + '"'; return i ? '<td' + lb + '>' + c + '</td>' : '<td' + lb + '><b>' + c + '</b></td>'; }).join('') + '</tr>'; }).join('');
 
   setupConcepts(); setupEditor(); setupBoards(); fillEditor(); buildBoards(); renderAll();
   D.CONCEPTS.forEach(function (c, i) { setTimeout(function () { thumb(i); }, 400 + i * 120); });

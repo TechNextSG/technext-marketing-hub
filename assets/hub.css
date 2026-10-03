@@ -146,12 +146,24 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
 tr:last-child td{border-bottom:0}
+/* responsive tables: on phones a table.rt turns into labelled rows (no sideways scroll) */
+@media (max-width:640px){
+  table.rt,table.rt tbody,table.rt tr,table.rt th,table.rt td{display:block;width:auto!important}
+  table.rt thead{display:none}
+  table.rt tr{padding:12px 0;border-bottom:1px solid var(--line)}
+  table.rt tr:first-child{padding-top:2px}
+  table.rt tr:last-child{border-bottom:0;padding-bottom:0}
+  table.rt th,table.rt td{border:0;padding:3px 0;overflow-wrap:anywhere}
+  table.rt td[data-label]::before{content:attr(data-label);display:block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:6px 0 2px}
+  table.rt td:first-child[data-label]::before{display:none}
+  table.rt thead+tbody td:first-child{font-size:15px;font-weight:600;color:var(--ink)}
+}
 td code,.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--blue-050);color:var(--blue-700);padding:2px 6px;border-radius:6px}
 .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:3px 8px}
 .pill.ok{background:#E3F3EA;color:var(--ok)}
 .pill.no{background:#FDE8E8;color:#B42318}
 .pill.care{background:#FEF3DC;color:var(--warn)}
-.copyblock{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 110px 14px 16px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.copyblock{position:relative;overflow-wrap:anywhere;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 110px 14px 16px;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
 .copyblock .btn{position:absolute;right:10px;top:10px;padding:7px 10px;font-size:12.5px}
 .copyblock+.copyblock{margin-top:10px}
 .copyblock b{color:var(--ink);display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}

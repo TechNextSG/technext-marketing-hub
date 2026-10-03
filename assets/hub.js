@@ -108,5 +108,13 @@
     addEventListener('scroll',upd,{passive:true});upd();
   }
 
-  document.addEventListener('DOMContentLoaded',function(){renderApps();search();reveal();spy();});
+  /* ---------- responsive tables: give each cell of a table.rt its column name (shown as a label on phones) ---------- */
+  function labelTables(){
+    $$('table.rt').forEach(function(t){
+      var hs=$$('thead th',t).map(function(th){return th.textContent.trim();});if(!hs.length)return;
+      $$('tbody tr',t).forEach(function(tr){$$('td',tr).forEach(function(td,i){if(hs[i]&&!td.hasAttribute('data-label'))td.setAttribute('data-label',hs[i]);});});
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){renderApps();search();reveal();spy();labelTables();});
 })();
