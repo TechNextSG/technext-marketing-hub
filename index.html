@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>TechNext Marketing Hub</title>
-<meta name="description" content="Every TechNext marketing tool in one place: presentations, Drip Studio, the Paid Ads Studio, the website, Nexi Studio, the brand guide and the staff branding kit (signature, profile photo, backgrounds, business and ID cards).">
+<meta name="description" content="Every TechNext marketing tool in one place: presentations, Drip Studio, the Paid Ads Studio, the website, Nexi Studio, the brand guide, the staff branding kit (signature, profile photo, backgrounds, business and ID cards) and the Claude skills.">
 <link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&family=Caveat:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/hub.css?v=4">
+<link rel="stylesheet" href="assets/hub.css?v=5">
 </head>
 <body>
 
@@ -22,6 +22,7 @@
       <a href="branding.html">Brand guide</a>
       <a href="nexi-studio.html">Nexi Studio</a>
       <a href="paid-ads.html">Paid ads</a>
+      <a href="skills.html">Skills</a>
       <a class="cta" href="https://technext.asia" target="_blank" rel="noopener">technext.asia</a>
     </nav>
   </div>
@@ -31,7 +32,7 @@
   <div class="wrap">
     <span class="kicker"><i></i>Marketing team &middot; internal</span>
     <h1>Every marketing tool, <em>one page.</em></h1>
-    <p>The seven things the marketing team opens most, with the links that matter for each. Bookmark this page and stop hunting through Drive, GitHub and chat history.</p>
+    <p>The eight things the marketing team opens most, with the links that matter for each. Bookmark this page and stop hunting through Drive, GitHub and chat history.</p>
     <label class="search" for="q">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Search tools: decks, drips, ads, logo, Nexi, signature&hellip;" autocomplete="off">
@@ -42,6 +43,7 @@
       <button class="chip" data-cat="social" aria-pressed="false">Social media</button>
       <button class="chip" data-cat="brand" aria-pressed="false">Brand &amp; identity</button>
       <button class="chip" data-cat="web" aria-pressed="false">Website</button>
+      <button class="chip" data-cat="ai" aria-pressed="false">Claude &amp; AI</button>
     </div>
   </div>
 </section>
@@ -83,13 +85,13 @@
     <span>TechNext Pte. Ltd. &middot; Marketing Hub &middot; internal use</span>
     <a href="branding.html">Brand guide</a>
     <a href="https://github.com/TechNextSG/technext-marketing-hub" target="_blank" rel="noopener">Edit this page</a>
-    <span class="right">Updated 2 Oct 2026</span>
+    <span class="right">Updated 3 Oct 2026</span>
   </div>
 </footer>
 
 <script>
 /* One edit point: add a tool here and the card appears. The first link is the primary button.
-   badges: k = live | unlisted | login. cat = sell | social | brand | web (filter chips). */
+   badges: k = live | unlisted | login. cat = sell | social | brand | web | ai (filter chips). */
 window.APPS=[
   {
     name:'TechNext Presentations',
@@ -193,6 +195,21 @@ window.APPS=[
       {label:'Logos',href:'branding.html#logo'},
       {label:'Colours',href:'branding.html#colour'},
       {label:'Claims',href:'branding.html#words'}
+    ]
+  },
+  {
+    name:'Claude Skills',
+    cat:'ai',
+    img:'assets/img/skills.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'Every Claude Code skill we work with, on one page. The skills TechNext writes are published in full: <b>nexi-video</b> is the playbook behind every Nexi explainer video, with its pipeline, design rules, engine API, QA checklist and lessons log. Third-party design and motion skills are listed with their source and licence.',
+    use:'Before you start or fix a Nexi video, or to install a TechNext skill on a new machine. Claude updates the skill after every job and rebuilds this page.',
+    tags:['claude','claude code','skills','ai','nexi','video','playbook','design rules','animation','motion','qa','lessons','install'],
+    links:[
+      {label:'Open Skills',href:'skills.html'},
+      {label:'nexi-video',href:'skills.html#nexi-video/SKILL.md'},
+      {label:'Lessons log',href:'skills.html#nexi-video/reference/lessons.md'},
+      {label:'Download .zip',href:'assets/skills/nexi-video.zip',icon:'down'}
     ]
   }
 ];
