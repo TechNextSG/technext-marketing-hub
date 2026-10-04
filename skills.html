@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Claude Skills &middot; TechNext Marketing Hub</title>
-<meta name="description" content="Every Claude Code skill the marketing team works with. TechNext-made skills, like nexi-video for the Nexi explainer videos, are published in full to read, download and install. Third-party skills are listed with their source and licence.">
+<meta name="description" content="Every Claude Code skill the marketing team works with. TechNext-made skills, like nexi-video for the Nexi explainer videos and technext-presentations for the HTML decks, are published in full to read, download and install. Third-party skills are listed with their source and licence.">
 <link rel="icon" type="image/png" href="assets/logo/technext-brandmark-blue.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,12 +150,13 @@
     <p>A skill is the playbook Claude reads before it starts a job. The skills TechNext writes are published here in full, so anyone can read, download and install them. They are updated after every job. Third-party skills are listed with their source and licence.</p>
     <label class="search" for="sq">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="sq" type="search" placeholder="Search skills: video, animation, audit, design&hellip;" autocomplete="off">
+      <input id="sq" type="search" placeholder="Search skills: video, decks, animation, audit, design&hellip;" autocomplete="off">
       <kbd>/</kbd>
     </label>
     <div class="chips" role="group" aria-label="Filter skills">
       <button class="chip" data-f="own" aria-pressed="false">TechNext-made</button>
       <button class="chip" data-f="video" aria-pressed="false">Video</button>
+      <button class="chip" data-f="decks" aria-pressed="false">Presentations</button>
       <button class="chip" data-f="design" aria-pressed="false">Design</button>
       <button class="chip" data-f="motion" aria-pressed="false">Motion</button>
     </div>
@@ -211,7 +212,7 @@
   </div>
 </footer>
 
-<script src="assets/skills/skills.js?v=7721d503"></script>
+<script src="assets/skills/skills.js?v=ad6f359a"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
 <script>
 (function(){
@@ -222,9 +223,8 @@
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var day=function(iso){var p=String(iso).split('-');return p.length<3?iso:(+p[2])+' '+MON[+p[1]-1]+' '+p[0];};
-  var GROUP={video:'Video',design:'Design',motion:'Motion'};
-  var LABEL={'SKILL.md':'Overview','engine.md':'Engine API','qa-checklist.md':'QA checklist','design-rules.md':'Design rules','lessons.md':'Lessons log','workflow.md':'Workflow','film-template.js':'Film template'};
-  var ART={'nexi-video':'assets/ads/nexi/nexi-present.webp'};
+  var GROUP={video:'Video',decks:'Presentations',design:'Design',motion:'Motion'};
+  var LABEL={'SKILL.md':'Overview','engine.md':'Engine API','qa-checklist.md':'QA checklist','design-rules.md':'Design rules','lessons.md':'Lessons log','workflow.md':'Workflow','film-template.js':'Film template','rules.md':'Rulebook','content-rules.md':'Content rules','build-and-ship.md':'Build and ship','decks.md':'The decks','recipes.md':'Recipes','design.md':'Design system','deck_check.py':'QA gate script','deck_pdf.py':'PDF script','thumbs.py':'Thumbnail script','drive_sync.py':'Drive sync script','_cdp.py':'Chrome helper'};
   var IC={
     read:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg>',
     down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0 5-5m-5 5-5-5M4 20h16"/></svg>',
@@ -254,15 +254,15 @@
         +'<div class="eyebrow"><span class="badge own">TechNext</span><span class="badge">'+esc(GROUP[s.group]||s.group)+'</span><span class="badge">'+esc(invoke(s))+'</span></div>'
         +'<h3><span>/</span>'+esc(s.id)+'</h3>'
         +'<p class="lede">'+esc(s.summary||s.desc)+'</p>'
-        +'<ul class="kpis"><li><b>'+(s.steps||[]).length+' steps</b>per video</li><li><b>'+(s.docs||[]).length+' files</b>to read</li><li><b>'+s.lessons+' rounds</b>of lessons logged</li><li><b>'+esc(day(s.date))+'</b>last updated</li></ul>'
+        +'<ul class="kpis"><li><b>'+(s.steps||[]).length+' steps</b>per '+esc(s.unit||'job')+'</li><li><b>'+(s.docs||[]).length+' files</b>to read</li><li><b>'+s.lessons+' rounds</b>of lessons logged</li><li><b>'+esc(day(s.date))+'</b>last updated</li></ul>'
         +'<div class="links">'
           +'<a class="btn p" href="#doc-'+s.id+'" data-jump="'+s.id+'">'+IC.read+'Read the skill</a>'
           +'<a class="btn" href="'+esc(s.zip)+'" download>'+IC.down+'Download .zip</a>'
           +'<button class="btn" type="button" data-copy="'+esc(ps)+'" title="'+esc(ps)+'">'+IC.copy+'Install (PowerShell)</button>'
           +'<button class="btn" type="button" data-copy="'+esc(sh)+'" title="'+esc(sh)+'">'+IC.copy+'Install (bash)</button>'
         +'</div>'
-      +'</div>'+(ART[s.id]?'<div class="art"><img src="'+ART[s.id]+'" alt="" width="1608" height="1375" loading="lazy"></div>':'')+'</div>'
-      +(steps?'<div class="pipe-wrap"><h4>How we make one video</h4><ol class="pipe">'+steps+'</ol></div>':'')
+      +'</div>'+(s.art?'<div class="art"><img src="'+esc(s.art.src)+'" alt="" width="'+s.art.w+'" height="'+s.art.h+'" loading="lazy"></div>':'')+'</div>'
+      +(steps?'<div class="pipe-wrap"><h4>'+esc(s.pipe||'How we do one job')+'</h4><ol class="pipe">'+steps+'</ol></div>':'')
       +'<div class="reader"><nav class="rfiles" role="tablist" aria-label="'+esc(s.id)+' files"><span class="lbl">Files</span>'+files+'</nav>'
       +'<div class="doc" id="doc-'+s.id+'" role="tabpanel" tabindex="-1"></div></div>'
       +'</article>';

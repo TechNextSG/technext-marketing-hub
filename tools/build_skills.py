@@ -25,11 +25,22 @@ SKILLS = pathlib.Path.home() / ".claude" / "skills"
 OUT = HUB / "assets" / "skills"
 
 # Skills TechNext wrote. Only these are published in full.
-OWN = {"nexi-video"}
+OWN = {"nexi-video", "technext-presentations"}
+
+# How the page names one job of a TechNext skill ("10 steps per <unit>", the pipeline heading) and its art.
+JOB = {
+    "nexi-video": ("video", "How we make one video"),
+    "technext-presentations": ("deck change", "How we change a deck"),
+}
+ART = {
+    "nexi-video": ("assets/ads/nexi/nexi-present.webp", 1608, 1375),
+    "technext-presentations": ("assets/img/skill-presentations.webp", 804, 688),
+}
 
 # Filter group per skill. New skills default to "design".
 GROUP = {
     "nexi-video": "video",
+    "technext-presentations": "decks",
     "impeccable": "design", "web-design-engineer": "design", "apple-design": "design",
     "emil-design-eng": "design", "pick-ui-library": "design", "prototype": "design",
     "animation-vocabulary": "motion", "find-animation-opportunities": "motion",
@@ -48,7 +59,8 @@ NOTE = {
 }
 
 # Reading order for published skills; anything else follows alphabetically.
-ORDER = ["SKILL.md", "reference/rules.md", "reference/workflow.md", "reference/engine.md",
+ORDER = ["SKILL.md", "reference/rules.md", "reference/content-rules.md", "reference/workflow.md", "reference/engine.md",
+         "reference/build-and-ship.md", "reference/decks.md", "reference/recipes.md", "reference/design.md",
          "reference/qa-checklist.md", "reference/lessons.md", "reference/film-template.js"]
 TEXT = {".md", ".js", ".py", ".json", ".txt", ".css", ".html", ".yml", ".yaml"}
 
@@ -175,6 +187,9 @@ def main():
             s["steps"] = pipeline(body)
             lessons = folder / "reference" / "lessons.md"
             s["lessons"] = len(re.findall(r"^## ", lessons.read_text(encoding="utf-8"), re.M)) if lessons.exists() else 0
+            s["unit"], s["pipe"] = JOB.get(folder.name, ("job", "How we do one job"))
+            if folder.name in ART:
+                s["art"] = dict(zip(("src", "w", "h"), ART[folder.name]))
             s["zip"] = f"assets/skills/{folder.name}.zip"
             write_zip(folder.name, folder, OUT / f"{folder.name}.zip")
         skills.append(s)
