@@ -48,7 +48,7 @@ NOTE = {
 }
 
 # Reading order for published skills; anything else follows alphabetically.
-ORDER = ["SKILL.md", "reference/workflow.md", "reference/design-rules.md", "reference/engine.md",
+ORDER = ["SKILL.md", "reference/rules.md", "reference/workflow.md", "reference/engine.md",
          "reference/qa-checklist.md", "reference/lessons.md", "reference/film-template.js"]
 TEXT = {".md", ".js", ".py", ".json", ".txt", ".css", ".html", ".yml", ".yaml"}
 
