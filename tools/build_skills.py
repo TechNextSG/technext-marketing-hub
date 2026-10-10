@@ -25,21 +25,23 @@ SKILLS = pathlib.Path.home() / ".claude" / "skills"
 OUT = HUB / "assets" / "skills"
 
 # Skills TechNext wrote. Only these are published in full.
-OWN = {"nexi-video", "technext-presentations"}
+OWN = {"nexi-video", "technext-presentations", "nexi-character"}
 
 # How the page names one job of a TechNext skill ("10 steps per <unit>", the pipeline heading) and its art.
 JOB = {
     "nexi-video": ("video", "How we make one video"),
     "technext-presentations": ("deck change", "How we change a deck"),
+    "nexi-character": ("reaction", "How Nexi reacts"),
 }
 ART = {
     "nexi-video": ("assets/ads/nexi/nexi-present.webp", 1608, 1375),
     "technext-presentations": ("assets/img/skill-presentations.webp", 804, 688),
+    "nexi-character": ("assets/ads/nexi/nexi-knock.webp", 979, 1375),
 }
 
 # Filter group per skill. New skills default to "design".
 GROUP = {
-    "nexi-video": "video",
+    "nexi-video": "video", "nexi-character": "video",
     "technext-presentations": "decks",
     "impeccable": "design", "web-design-engineer": "design", "apple-design": "design",
     "emil-design-eng": "design", "pick-ui-library": "design", "prototype": "design",
