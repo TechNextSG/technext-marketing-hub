@@ -12,7 +12,7 @@ import json
 import pathlib
 
 HUB = pathlib.Path(__file__).resolve().parent.parent
-SRC = pathlib.Path(r"G:\Shared drives\Marketing\00. TechNext Folder\23. AI Marketing Team\knowledge\team-skills.json")
+SRC = pathlib.Path(r"G:\Shared drives\Marketing\02. TechNext Folder\01. TechNext Marketing Hub\03. AI Marketing Team\knowledge\team-skills.json")   # moved in the 2026-10-10 Drive reorg
 OUT = HUB / "ai-team.html"
 e = html.escape
 
