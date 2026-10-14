@@ -58,7 +58,7 @@
       <dl class="ix-stats">
         <div><dt>tools</dt><dd data-n-tools>9</dd></div>
         <div><dt>categories</dt><dd>5</dd></div>
-        <div><dt>internal</dt><dd>100%</dd></div>
+        <div><dt>quick links</dt><dd data-n-links>0</dd></div>
       </dl>
     </div>
   </div>
@@ -256,7 +256,7 @@ window.APPS=[
   function ext(h){return /^https?:/.test(h)?' target="_blank" rel="noopener"':''}
   function strip(h){return String(h).replace(/<[^>]+>/g,"")}
   var A=window.APPS,res=document.getElementById("results"),q=document.getElementById("q"),cat="";
-  document.querySelector("[data-n-tools]").textContent=A.length;
+  document.querySelector("[data-n-tools]").textContent=A.length;document.querySelector("[data-n-links]").textContent=A.reduce(function(n,a){return n+a.links.length},0);
   res.innerHTML=GROUPS.map(function(g){
     var L=A.filter(function(a){return a.cat===g[0]});if(!L.length)return"";
     return '<section class="ix-group" data-g="'+g[0]+'" style="--n:'+L.length+'"><header class="ix-gh"><h2>'+esc(g[1])+'</h2><span class="ix-gn">'+L.length+'</span><p>'+esc(g[2])+'</p></header><div class="ix-grid">'+
