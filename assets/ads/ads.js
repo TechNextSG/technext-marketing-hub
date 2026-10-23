@@ -210,7 +210,7 @@
     propUI(cr.prop);
     $$('#concepts .concept').forEach(function (bt, i) { bt.setAttribute('aria-selected', String(i === cur)); bt.tabIndex = i === cur ? 0 : -1; });
   }
-  var HINT = { flow: 'one step per line: Step|Odoo app, up to 6', apps: 'one Odoo app per line, up to 8', stats: 'figures as 10+|countries',
+  var HINT = { flow: 'one step per line: Step|Odoo app, up to 6', apps: 'one Odoo app per line, up to 8', stats: 'figures as 25+|countries',
     chat: 'customer line, then the reply', sheets: 'crossed-out files, last line = the fix', checks: 'one per line', site: 'chat widget greeting' };
   function propUI(prop) { $('#items-hint').textContent = HINT[prop] || 'one per line'; $('#apppick-wrap').hidden = prop !== 'flow' && prop !== 'apps'; }
   function setupEditor() {

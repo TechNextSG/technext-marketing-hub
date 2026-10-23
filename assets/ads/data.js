@@ -215,17 +215,17 @@ window.ADS = (function () {
       group: 'ai', id: 'why-technext', name: 'Why TechNext', url: 'https://technext.asia/company',
       creative: {
         bg: 'horizon', pose: 'celebrate', pose2: 'clap', bubble: 'Hello from Singapore!', bubble2: 'Nice to meet you!',
-        kicker: 'Why TechNext', headline: '11+ enterprise clients. 10+ countries. *One team.*',
+        kicker: 'Why TechNext', headline: '90+ enterprise clients. 25+ countries. *One team.*',
         sub: 'Odoo ERP and enterprise AI from Singapore, with hubs in Metro Manila and Ho Chi Minh City.',
         cta: 'Meet the team', prop: 'stats', badge: false,
-        items: ['10+|countries', '11+|enterprise clients', '3|offices', '4|AI disciplines']
+        items: ['25+|countries', '90+|enterprise clients', '3|offices', '4|AI disciplines']
       },
       copy: {
-        meta: { primary: 'Odoo ERP and enterprise AI from one team: HQ in Singapore, hubs in Manila and Ho Chi Minh City, clients in 10+ countries.', headline: '11+ enterprise clients, 10+ countries', desc: 'TechNext, Singapore', cta: 'Learn more' },
-        linkedin: { intro: 'TechNext has transformed 11+ enterprise clients across 10+ countries with Odoo ERP and enterprise AI, from Singapore, Manila and Ho Chi Minh City.', headline: 'One team for Odoo ERP and enterprise AI', cta: 'Learn more' },
+        meta: { primary: 'Odoo ERP and enterprise AI from one team: HQ in Singapore, hubs in Manila and Ho Chi Minh City, clients in 25+ countries.', headline: '90+ enterprise clients, 25+ countries', desc: 'TechNext, Singapore', cta: 'Learn more' },
+        linkedin: { intro: 'TechNext has transformed 90+ enterprise clients across 25+ countries with Odoo ERP and enterprise AI, from Singapore, Manila and Ho Chi Minh City.', headline: 'One team for Odoo ERP and enterprise AI', cta: 'Learn more' },
         tiktok: { text: 'One team for Odoo ERP and AI, from Singapore, Manila and Ho Chi Minh City.', cta: 'Learn more' },
-        x: { text: '11+ enterprise clients. 10+ countries. One team for Odoo ERP and enterprise AI, from Singapore, Metro Manila and Ho Chi Minh City.', headline: 'Meet TechNext' },
-        youtube: { headline: 'One team for Odoo ERP and AI', long: '11+ enterprise clients in 10+ countries, from Singapore, Manila and Ho Chi Minh City.', desc: 'TechNext: Odoo Ready Partner and enterprise AI consultancy, headquartered in Singapore.', cta: 'Learn more' }
+        x: { text: '90+ enterprise clients. 25+ countries. One team for Odoo ERP and enterprise AI, from Singapore, Metro Manila and Ho Chi Minh City.', headline: 'Meet TechNext' },
+        youtube: { headline: 'One team for Odoo ERP and AI', long: '90+ enterprise clients in 25+ countries, from Singapore, Manila and Ho Chi Minh City.', desc: 'TechNext: Odoo Ready Partner and enterprise AI consultancy, headquartered in Singapore.', cta: 'Learn more' }
       }
     }
   ];

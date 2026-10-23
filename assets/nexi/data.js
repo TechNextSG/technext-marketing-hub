@@ -165,7 +165,7 @@ LEARNINGS: [
     why:'"Odoo 20" questions got the generic What is Odoo answer.' },
   { type:'new', topic:'offices', label:'Where are your teams?', icon:'i_pin', react:'wave', intro:'We\'re a well-travelled bunch!', q:'do you have an office in the philippines',
     kw:['philippines','manila','metro manila','taguig','vietnam','ho chi minh','hcmc','saigon','countries','which countries','what countries','international','overseas','abroad','offices','in the philippines','in vietnam','office in the philippines','office in vietnam','office in manila'],
-    ans:'TechNext is headquartered in <b>Singapore</b>, with teams in <b>Taguig City, Philippines</b> (our main development and consulting hub) and <b>Ho Chi Minh City, Vietnam</b> (AI engineering). We have clients in 10+ countries.',
+    ans:'TechNext is headquartered in <b>Singapore</b>, with teams in <b>Taguig City, Philippines</b> (our main development and consulting hub) and <b>Ho Chi Minh City, Vietnam</b> (AI engineering). We have clients in 25+ countries.',
     links:[['link','company','About TechNext'],['link','odoo/philippines','Odoo in the Philippines']],
     fol:['partner','how','talk'], from:['partner'], on:false, status:'shipped', by:'Claude (coverage run)', at:'2026-10-02',
     why:'Nexi only knew the Singapore address; the site lists three offices.' },
