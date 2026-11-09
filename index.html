@@ -51,7 +51,7 @@
       </div>
       <dl class="ix-stats">
         <div><dt>tools</dt><dd data-n-tools>4</dd></div>
-        <div><dt>categories</dt><dd>3</dd></div>
+        <div><dt>categories</dt><dd>4</dd></div>
         <div><dt>quick links</dt><dd data-n-links>0</dd></div>
       </dl>
     </div>
@@ -97,15 +97,29 @@
 
 <footer class="ix-foot">
   <div class="ix-wrap">
-    <span>TechNext Pte. Ltd. &middot; Marketing Hub &middot; internal use &middot; updated 15 Oct 2026</span>
+    <span>TechNext Pte. Ltd. &middot; Marketing Hub &middot; internal use &middot; updated 9 Nov 2026</span>
     <a href="https://github.com/TechNextSG/technext-marketing-hub" target="_blank" rel="noopener">Edit this page</a>
   </div>
 </footer>
 
 <script>
 /* One edit point: add a tool here and its card appears in its category group. The first link is the primary button.
-   badges: k = live | unlisted | login. cat = sell | social | brand | web | ai. */
+   badges: k = live | unlisted | login. cat = sell | social | brand | web | ai | data. */
 window.APPS=[
+  {
+    name:'Marketing Dashboard',
+    cat:'data',
+    img:'assets/img/dashboard.jpg',
+    badges:[{k:'live',t:'Live'}],
+    desc:'Every channel traced through to Odoo CRM: paid spend, reach, clicks, emails, social posts, real leads, qualified clients and cost per lead. Tabs for paid ads, email, social, CRM leads, actions and data notes.',
+    use:'Weekly review and before any ad or budget decision. Start on <b>Overview</b>, then <b>Cost per lead</b> for spend vs real leads.',
+    tags:['dashboard','analytics','report','funnel','leads','crm','odoo','cost per lead','cpl','meta ads','google ads','brevo','email','social','kpi','results'],
+    links:[
+      {label:'Open dashboard',href:'https://technextsg.github.io/technext-marketing-dashboard/#overview'},
+      {label:'Cost per lead',href:'https://technextsg.github.io/technext-marketing-dashboard/#cpl'},
+      {label:'CRM leads',href:'https://technextsg.github.io/technext-marketing-dashboard/#crm'}
+    ]
+  },
   {
     name:'TechNext Presentations',
     cat:'sell',
@@ -170,7 +184,7 @@ window.APPS=[
 </script>
 <script>
 (function(){
-  var GROUPS=[["sell","Selling","Decks and material for sales calls and pitches."],["social","Social media","Posts, schedules and paid ads."],["brand","Brand & identity","The logo, the rules and the staff kit."],["web","Website","technext.asia and the Nexi assistant behind it."],["ai","Claude & AI","The AI marketing team."]];
+  var GROUPS=[["sell","Selling","Decks and material for sales calls and pitches."],["social","Social media","Posts, schedules and paid ads."],["brand","Brand & identity","The logo, the rules and the staff kit."],["web","Website","technext.asia and the Nexi assistant behind it."],["ai","Claude & AI","The AI marketing team."],["data","Results","Leads, spend and cost per lead, from ad to Odoo CRM."]];
   var BC={live:"#137A4A",unlisted:"#B45309",login:"#3167CA"};
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   function ext(h){return /^https?:/.test(h)?' target="_blank" rel="noopener"':''}
